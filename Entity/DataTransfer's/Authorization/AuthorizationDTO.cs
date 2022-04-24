@@ -12,3 +12,4 @@ namespace Entity.DataTransfer_s.Authorization
         public string? Password { get; set; }
     }
 }
+    

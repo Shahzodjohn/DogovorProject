@@ -13,5 +13,7 @@ namespace Entity.Entities
         public string? Password { get; set; }
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

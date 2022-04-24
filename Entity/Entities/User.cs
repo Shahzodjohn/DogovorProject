@@ -13,7 +13,9 @@ namespace Entity
         public string? EmailAddress { get; set; }
         public string? Password { get; set; }
         public int DepartmentId { get; set; }
+        public int RoleId { get; set; }
 
         public virtual Department Department { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

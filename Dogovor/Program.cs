@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using Castle.Core.Configuration;
 using Repository.Interfaces.DepartmentRepository;
+using Repository.Interfaces;
+using Repository;
+using Service.Services.FormToFillService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -20,6 +23,10 @@ builder.Services.AddCors();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IFormRepository, FormRepository>();
+builder.Services.AddScoped<IFormService, FormService>();
+
 builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

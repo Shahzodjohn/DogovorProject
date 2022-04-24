@@ -4,6 +4,7 @@ using Entity.DataTransfer_s.Authorization;
 using Entity.Entities;
 using Entity.ResponseMessage;
 using Interface.Interfaces;
+using Repository.Interfaces;
 using Repository.Interfaces.DepartmentRepository;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,13 @@ namespace Service.Services
     {
         private readonly IUserRepository _uRepository;
         private readonly IDepartmentRepository _dRepository;
+        private readonly IRoleRepository _roleRepository;
 
-        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository)
+        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository, IRoleRepository roleRepository)
         {
             _uRepository = userRepository;
             _dRepository = dRepository;
+            _roleRepository = roleRepository;
         }
 
         public async Task<Response> Login(AuthorizationDTO dto)
@@ -53,12 +56,15 @@ namespace Service.Services
         {
             var user = await _uRepository.GetUserbyEmail(claim.Name);
             var Department = await _dRepository.GetDepartmentbyId(user.DepartmentId);
+            var role = await _roleRepository.GetRoleById(user.RoleId);
             var userInfo = new UserDepartmentDTO
             {
                 UserId = user.Id,
                 EmailAddress = user.EmailAddress,
                 DepartmentId = Department.Id,
                 DepartmentName = Department.DepartmentName,
+                RoleId = role.Id,
+                RoleName = role.RoleName,
                 Password = "you do not have to see the password"
             };
             return userInfo;

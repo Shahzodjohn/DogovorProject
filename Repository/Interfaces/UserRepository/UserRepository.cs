@@ -44,6 +44,7 @@ namespace Interface.Interfaces
             {
                 EmailAddress = dto.EmailAddress.ToUpper(),
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                RoleId = 2,//Id = 2(User)
                 DepartmentId = dto.DepartmentId
             };
             await _context.users.AddAsync(user);
@@ -52,16 +53,17 @@ namespace Interface.Interfaces
         }
         public async Task<string> JSONToken(User user)
         {
-            //var userExists = await _context.users.FirstOrDefaultAsync(x => x.Id == user.Id);
+            var userExists = await _context.users.FirstOrDefaultAsync(x => x.Id == user.Id);
             var userDepartment = await _context.departments.FirstOrDefaultAsync(x => x.Id == user.DepartmentId);
             //var userRoles = userDepartment.Id;
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.EmailAddress),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.UserData, user.DepartmentId.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
-            authClaims.Add(new Claim(ClaimTypes.Role, userDepartment.DepartmentName));
+            authClaims.Add(new Claim(ClaimTypes.Role, userExists.RoleId.ToString()));
             var userIdentity = new ClaimsIdentity(authClaims, ClaimTypes.Name);
             var authSigninKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
             var token = new JwtSecurityToken(
@@ -74,4 +76,4 @@ namespace Interface.Interfaces
             return Token;
         }
     }
-}
+}   
