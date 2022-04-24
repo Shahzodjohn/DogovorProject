@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ConnectionProvider.Migrations
 {
-    public partial class inital : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -202,30 +202,30 @@ namespace ConnectionProvider.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "receiversInfos",
+                name: "receiverInfos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReceiversFullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    СitizenshipId = table.Column<int>(type: "int", nullable: false),
                     ReceiversPassportTypeId = table.Column<int>(type: "int", nullable: false),
                     PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassportPlaceOfIssue = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassportDateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    СitizenshipId = table.Column<int>(type: "int", nullable: false),
                     CitizenshipId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_receiversInfos", x => x.Id);
+                    table.PrimaryKey("PK_receiverInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_receiversInfos_citizenships_CitizenshipId",
+                        name: "FK_receiverInfos_citizenships_CitizenshipId",
                         column: x => x.CitizenshipId,
                         principalTable: "citizenships",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_receiversInfos_receiversPassportTypes_ReceiversPassportTypeId",
+                        name: "FK_receiverInfos_receiversPassportTypes_ReceiversPassportTypeId",
                         column: x => x.ReceiversPassportTypeId,
                         principalTable: "receiversPassportTypes",
                         principalColumn: "Id",
@@ -287,9 +287,9 @@ namespace ConnectionProvider.Migrations
                         principalTable: "purposes",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_formsToFill_receiversInfos_receiversInfoId",
+                        name: "FK_formsToFill_receiverInfos_receiversInfoId",
                         column: x => x.receiversInfoId,
-                        principalTable: "receiversInfos",
+                        principalTable: "receiverInfos",
                         principalColumn: "Id");
                 });
 
@@ -397,13 +397,13 @@ namespace ConnectionProvider.Migrations
                 column: "PrincipalReasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_receiversInfos_CitizenshipId",
-                table: "receiversInfos",
+                name: "IX_receiverInfos_CitizenshipId",
+                table: "receiverInfos",
                 column: "CitizenshipId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_receiversInfos_ReceiversPassportTypeId",
-                table: "receiversInfos",
+                name: "IX_receiverInfos_ReceiversPassportTypeId",
+                table: "receiverInfos",
                 column: "ReceiversPassportTypeId");
 
             migrationBuilder.CreateIndex(
@@ -438,7 +438,7 @@ namespace ConnectionProvider.Migrations
                 name: "purposes");
 
             migrationBuilder.DropTable(
-                name: "receiversInfos");
+                name: "receiverInfos");
 
             migrationBuilder.DropTable(
                 name: "departments");

@@ -22,7 +22,7 @@ namespace ConnectionProvider
         public DbSet<PrincipalPosition> principalPositions { get; set; }
         public DbSet<PrincipalReason> principalReasons { get; set; }
         public DbSet<Purpose> purposes {get;set;}
-        public DbSet<ReceiversInfo> receiversInfos {get;set;}
+        public DbSet<ReceiverInfo> receiverInfos {get;set;}
         public DbSet<ReceiversPassportType> receiversPassportTypes{get;set;}
 
 

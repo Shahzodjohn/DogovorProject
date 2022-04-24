@@ -63,11 +63,6 @@ namespace Repository.Interfaces
                 await _context.principalInfos.AddAsync(principalInfo);
                 await _context.SaveChangesAsync();
                 findOrder.principalInfoId = principalInfo.Id;
-                //var formApplication = new FormToFill
-                //{
-                //    principalInfoId = principalInfo.Id
-                //};
-                //await _context.formsToFill.AddAsync(formApplication);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -83,18 +78,18 @@ namespace Repository.Interfaces
             var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
-                var receiverInfo = new ReceiversInfo
+                var receiverInfo = new ReceiverInfo
                 {
-                      ReceiversFullname = dto.ReceiversFullname,
-                       СitizenshipId = dto.СitizenshipId,
-                        ReceiversPassportTypeId = dto.ReceiversPassportTypeId,
-                         PassportNumber = dto.PassportNumber,
-                          PassportPlaceOfIssue = dto.PassportPlaceOfIssue,
-                           PassportDateOfIssue = dto.PassportDateOfIssue,
+                    ReceiversFullname = dto.ReceiversFullname,
+                    СitizenshipId = dto.СitizenshipId,
+                    ReceiversPassportTypeId = dto.ReceiversPassportTypeId,
+                    PassportNumber = dto.PassportNumber,
+                    PassportPlaceOfIssue = dto.PassportPlaceOfIssue,
+                    PassportDateOfIssue = dto.PassportDateOfIssue,
                 };
-                await _context.receiversInfos.AddAsync(receiverInfo);
+                await _context.receiverInfos.AddAsync(receiverInfo);
                 await _context.SaveChangesAsync();
-                findOrder.principalInfoId = receiverInfo.Id;
+                findOrder.receiversInfoId = receiverInfo.Id;
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -106,16 +101,10 @@ namespace Repository.Interfaces
 
         public async Task<Response> InsertIntoPurposeId(PurposeDTO dto)
         {
-            
+            var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
-                var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
                 findOrder.purposeId = dto.PurposeId;
-                //var formApplication = new FormToFill
-                //{
-                //    purposeId = dto.PurposeId
-                //};
-                //await _context.formsToFill.AddAsync(formApplication);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -132,12 +121,6 @@ namespace Repository.Interfaces
                 var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
                 findOrder.validFrom = dto.ValidFrom;
                 findOrder.validUntill = dto.ValidUntill;
-                //var formApplication = new FormToFill
-                //{
-                //    validFrom = dto.ValidFrom,
-                //     validUntill = dto.ValidUntill,
-                //};
-                //await _context.formsToFill.AddAsync(formApplication);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -146,7 +129,5 @@ namespace Repository.Interfaces
             }
             return new Response { Status = "200", Message = "Success!" };
         }
-
-        
     }
 }

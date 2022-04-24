@@ -4,6 +4,7 @@ using ConnectionProvider;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConnectionProvider.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220424075126_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,6 +337,9 @@ namespace ConnectionProvider.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CitizenshipId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PassportDateOfIssue")
                         .HasColumnType("datetime2");
 
@@ -358,9 +363,9 @@ namespace ConnectionProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ReceiversPassportTypeId");
+                    b.HasIndex("CitizenshipId");
 
-                    b.HasIndex("СitizenshipId");
+                    b.HasIndex("ReceiversPassportTypeId");
 
                     b.ToTable("receiverInfos");
                 });
@@ -516,15 +521,15 @@ namespace ConnectionProvider.Migrations
 
             modelBuilder.Entity("Entity.Entities.ReceiverInfo", b =>
                 {
-                    b.HasOne("Entity.Entities.ReceiversPassportType", "ReceiversPassportType")
+                    b.HasOne("Entity.Entities.Citizenship", "Citizenship")
                         .WithMany()
-                        .HasForeignKey("ReceiversPassportTypeId")
+                        .HasForeignKey("CitizenshipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entity.Entities.Citizenship", "Citizenship")
+                    b.HasOne("Entity.Entities.ReceiversPassportType", "ReceiversPassportType")
                         .WithMany()
-                        .HasForeignKey("СitizenshipId")
+                        .HasForeignKey("ReceiversPassportTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

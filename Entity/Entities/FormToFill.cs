@@ -20,7 +20,7 @@ namespace Entity.Entities
 
 
         public virtual PrincipalInfo PrincipalInfo { get; set; }
-        public virtual ReceiversInfo ReceiversInfo { get; set; }
+        public virtual ReceiverInfo ReceiversInfo { get; set; }
         public virtual Purpose Purpose { get; set; }
     }
 }

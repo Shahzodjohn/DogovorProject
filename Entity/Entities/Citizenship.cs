@@ -9,7 +9,6 @@ namespace Entity.Entities
 {
     public class Citizenship
     {
-        [Key]
         public int Id { get; set; }
         public string CitizenOf { get; set; }
     }

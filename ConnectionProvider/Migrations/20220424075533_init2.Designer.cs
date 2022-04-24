@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConnectionProvider.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220424065020_inital")]
-    partial class inital
+    [Migration("20220424075533_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -329,16 +329,13 @@ namespace ConnectionProvider.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Entity.Entities.ReceiversInfo", b =>
+            modelBuilder.Entity("Entity.Entities.ReceiverInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CitizenshipId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("PassportDateOfIssue")
                         .HasColumnType("datetime2");
@@ -363,11 +360,11 @@ namespace ConnectionProvider.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CitizenshipId");
-
                     b.HasIndex("ReceiversPassportTypeId");
 
-                    b.ToTable("receiversInfos");
+                    b.HasIndex("СitizenshipId");
+
+                    b.ToTable("receiverInfos");
                 });
 
             modelBuilder.Entity("Entity.Entities.ReceiversPassportType", b =>
@@ -473,7 +470,7 @@ namespace ConnectionProvider.Migrations
                         .WithMany()
                         .HasForeignKey("purposeId");
 
-                    b.HasOne("Entity.Entities.ReceiversInfo", "ReceiversInfo")
+                    b.HasOne("Entity.Entities.ReceiverInfo", "ReceiversInfo")
                         .WithMany()
                         .HasForeignKey("receiversInfoId");
 
@@ -519,17 +516,17 @@ namespace ConnectionProvider.Migrations
                     b.Navigation("PrincipalReason");
                 });
 
-            modelBuilder.Entity("Entity.Entities.ReceiversInfo", b =>
+            modelBuilder.Entity("Entity.Entities.ReceiverInfo", b =>
                 {
-                    b.HasOne("Entity.Entities.Citizenship", "Citizenship")
-                        .WithMany()
-                        .HasForeignKey("CitizenshipId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entity.Entities.ReceiversPassportType", "ReceiversPassportType")
                         .WithMany()
                         .HasForeignKey("ReceiversPassportTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entity.Entities.Citizenship", "Citizenship")
+                        .WithMany()
+                        .HasForeignKey("СitizenshipId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
