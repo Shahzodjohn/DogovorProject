@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConnectionProvider.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220424075533_init2")]
-    partial class init2
+    [Migration("20220425064247_document")]
+    partial class document
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -153,6 +153,8 @@ namespace ConnectionProvider.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("documentId");
 
                     b.HasIndex("principalInfoId");
 
@@ -462,6 +464,10 @@ namespace ConnectionProvider.Migrations
 
             modelBuilder.Entity("Entity.Entities.FormToFill", b =>
                 {
+                    b.HasOne("Entity.Entities.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("documentId");
+
                     b.HasOne("Entity.Entities.PrincipalInfo", "PrincipalInfo")
                         .WithMany()
                         .HasForeignKey("principalInfoId");
@@ -473,6 +479,8 @@ namespace ConnectionProvider.Migrations
                     b.HasOne("Entity.Entities.ReceiverInfo", "ReceiversInfo")
                         .WithMany()
                         .HasForeignKey("receiversInfoId");
+
+                    b.Navigation("Document");
 
                     b.Navigation("PrincipalInfo");
 

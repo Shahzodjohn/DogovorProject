@@ -37,7 +37,7 @@ namespace ConnectionProvider
             builder.Entity<PrincipalName>().HasData(new PrincipalName { Id = 1, PrincipalFullName = "Курбонов Абдулло У." });
             builder.Entity<PrincipalReason>().HasData(new PrincipalReason { Id = 1, ReasonType = "Оиннома" });
             builder.Entity<Citizenship>().HasData(new Citizenship { Id = 1, CitizenOf = "шаҳрванди Ҷумҳурии Тоҷикистон" });
-            builder.Entity<ReceiversPassportType>().HasData(new ReceiversPassportType { Id = 1, Type = "Шиносномаи Чумхурии Точикистон" });
+            builder.Entity<ReceiversPassportType>().HasData(new ReceiversPassportType { Id = 1, Type = "шиносномаи" });
             builder.Entity<Purpose>().HasData(new Purpose { Id = 1, PurposeText = "Салом, Оферта, ДБО, Банковский счет, Депозит" },
                                               new Purpose { Id = 2, PurposeText = "СМИ, залог, поручительство" },
                                               new Purpose { Id = 3, PurposeText = "Озод намудани амволи гарав" });

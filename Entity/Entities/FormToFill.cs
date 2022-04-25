@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Entity.Entities
     public class FormToFill
     {
         public int Id { get; set; }
+       // [ForeignKey(nameof(Document))]
         public int? documentId { get; set; }
         public int? principalInfoId { get; set; }
         //public int? receiversAmount { get; set; }
@@ -18,7 +20,7 @@ namespace Entity.Entities
         public DateTime? validUntill { get; set; }
 
 
-
+        public virtual  Document Document { get; set; }
         public virtual PrincipalInfo PrincipalInfo { get; set; }
         public virtual ReceiverInfo ReceiversInfo { get; set; }
         public virtual Purpose Purpose { get; set; }

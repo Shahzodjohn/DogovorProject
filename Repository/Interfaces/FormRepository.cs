@@ -129,5 +129,11 @@ namespace Repository.Interfaces
             }
             return new Response { Status = "200", Message = "Success!" };
         }
+
+        public async Task<FormToFill> OrderInfo(int orderId)
+        {
+            var FindOrder = await _context.formsToFill.FindAsync(orderId);
+            return FindOrder;
+        }
     }
 }

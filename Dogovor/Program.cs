@@ -12,6 +12,8 @@ using Repository.Interfaces.DepartmentRepository;
 using Repository.Interfaces;
 using Repository;
 using Service.Services.FormToFillService;
+using Entity.MailSettings;
+using Service.Services.MailService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -26,6 +28,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IFormRepository, FormRepository>();
 builder.Services.AddScoped<IFormService, FormService>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+//builder.Services.AddScoped<MailSettings>();
+builder.Services.AddScoped<IMailService, MailService>();
+//IHostBuilder CreateHostBuilder(string[] args) =>
+//         Host.CreateDefaultBuilder(args)
+//             .ConfigureWebHostDefaults(webBuilder =>
+//             {
+//                 webBuilder.UseStartup<Program>().UseWebRoot("wwwroot");
+//             });
 
 builder.Services.AddAuthentication(opt =>
 {

@@ -1,4 +1,5 @@
 ﻿using Entity.DataTransfer_s.FormApplication;
+using Entity.Entities;
 using Entity.ResponseMessage;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace Service.Services.FormToFillService
         public Task<Response> InsertReceiversInfoId(ReceiversInfoDTO dto);
         public Task<Response> InsertIntoPurposeId(PurposeDTO dto);
         public Task<Response> InsertIntoValidatonDatas(ValidationDataDTO dto);
+        public Task<Response> OrderInfo(int orderId);
     }
 }

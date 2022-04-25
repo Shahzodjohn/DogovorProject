@@ -56,6 +56,12 @@ namespace Dogovor.Controllers.ApplicationController
                 return BadRequest(message);
             else return Ok(message);
         }
+        [HttpGet]
+        public async Task<IActionResult> FileValue(int OrderId)
+        {
+            await _formService.OrderInfo(OrderId);
+            return Ok();
+        }
 
     }
 

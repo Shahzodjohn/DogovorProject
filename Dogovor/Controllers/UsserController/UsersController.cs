@@ -50,6 +50,7 @@ namespace DogovorProject.Controllers
             var userInfo = await _userService.UsersInformation(claim); 
             return Ok(userInfo);
         }
+        
 
     }
 }

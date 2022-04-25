@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ConnectionProvider.Migrations
 {
-    public partial class init1 : Migration
+    public partial class document : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -212,15 +212,14 @@ namespace ConnectionProvider.Migrations
                     PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassportPlaceOfIssue = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PassportDateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    СitizenshipId = table.Column<int>(type: "int", nullable: false),
-                    CitizenshipId = table.Column<int>(type: "int", nullable: false)
+                    СitizenshipId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_receiverInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_receiverInfos_citizenships_CitizenshipId",
-                        column: x => x.CitizenshipId,
+                        name: "FK_receiverInfos_citizenships_СitizenshipId",
+                        column: x => x.СitizenshipId,
                         principalTable: "citizenships",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -276,6 +275,11 @@ namespace ConnectionProvider.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_formsToFill", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_formsToFill_documents_documentId",
+                        column: x => x.documentId,
+                        principalTable: "documents",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_formsToFill_principalInfos_principalInfoId",
                         column: x => x.principalInfoId,
@@ -362,6 +366,11 @@ namespace ConnectionProvider.Migrations
                 column: "cityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_formsToFill_documentId",
+                table: "formsToFill",
+                column: "documentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_formsToFill_principalInfoId",
                 table: "formsToFill",
                 column: "principalInfoId");
@@ -397,9 +406,9 @@ namespace ConnectionProvider.Migrations
                 column: "PrincipalReasonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_receiverInfos_CitizenshipId",
+                name: "IX_receiverInfos_СitizenshipId",
                 table: "receiverInfos",
-                column: "CitizenshipId");
+                column: "СitizenshipId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_receiverInfos_ReceiversPassportTypeId",
@@ -420,16 +429,13 @@ namespace ConnectionProvider.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "documents");
-
-            migrationBuilder.DropTable(
                 name: "formsToFill");
 
             migrationBuilder.DropTable(
                 name: "users");
 
             migrationBuilder.DropTable(
-                name: "cities");
+                name: "documents");
 
             migrationBuilder.DropTable(
                 name: "principalInfos");
@@ -445,6 +451,9 @@ namespace ConnectionProvider.Migrations
 
             migrationBuilder.DropTable(
                 name: "roles");
+
+            migrationBuilder.DropTable(
+                name: "cities");
 
             migrationBuilder.DropTable(
                 name: "principalNames");

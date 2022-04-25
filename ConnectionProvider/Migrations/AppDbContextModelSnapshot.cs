@@ -152,6 +152,8 @@ namespace ConnectionProvider.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("documentId");
+
                     b.HasIndex("principalInfoId");
 
                     b.HasIndex("purposeId");
@@ -460,6 +462,10 @@ namespace ConnectionProvider.Migrations
 
             modelBuilder.Entity("Entity.Entities.FormToFill", b =>
                 {
+                    b.HasOne("Entity.Entities.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("documentId");
+
                     b.HasOne("Entity.Entities.PrincipalInfo", "PrincipalInfo")
                         .WithMany()
                         .HasForeignKey("principalInfoId");
@@ -471,6 +477,8 @@ namespace ConnectionProvider.Migrations
                     b.HasOne("Entity.Entities.ReceiverInfo", "ReceiversInfo")
                         .WithMany()
                         .HasForeignKey("receiversInfoId");
+
+                    b.Navigation("Document");
 
                     b.Navigation("PrincipalInfo");
 
