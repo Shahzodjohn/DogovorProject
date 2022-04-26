@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.MailService;
 //using Microsoft.Office.Interop.Word;
-using Task = System.Threading.Tasks.Task;
+
 
 namespace Dogovor.Controllers
 {
@@ -13,22 +13,33 @@ namespace Dogovor.Controllers
     public class TestController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IWebHostEnvironment _environment;
         private readonly IMailService _mailService;
 
-
-        public TestController(AppDbContext context, IWebHostEnvironment webHostEnvironment, IMailService mailService)
+        public TestController(IMailService mailService, AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;
-            _webHostEnvironment = webHostEnvironment;
             _mailService = mailService;
+            _context = context;
+            _environment = webHostEnvironment;
         }
+
         [HttpPost("Index")]
         public async Task Index([FromForm]Maildto mailRequest)
         {
-           await _mailService.SendEmailAsync(mailRequest);
+            var path = GetPath("Files");
+            await _mailService.SendEmailAsync(mailRequest, path.Result);
         }
+        private async Task<string> GetPath(string Folder)
+        {
+            var path = _environment.WebRootPath + $"\\{Folder}";
 
+            if (!Directory.Exists(path))    
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
+
+        }
 
 
     }

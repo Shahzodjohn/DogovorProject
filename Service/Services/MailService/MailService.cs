@@ -8,6 +8,7 @@ using Entity.DataTransfer_s.MailRequestDTO;
 using Entity.MailSettings;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
@@ -22,42 +23,23 @@ namespace Service.Services.MailService
             _settings = options.Value;
         }
 
-        public async Task SendEmailAsync(Maildto mailRequest)
+        public async Task SendEmailAsync(Maildto mailRequest,string FilePath)
         {
+            var file = GetFileByPath(FilePath);
             var email = new MimeMessage();
             email.Sender = MailboxAddress.Parse(_settings.Mail);    
             email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
-
             var builder = new BodyBuilder();
-            #region
-            //if (mailRequest.Attechments != null)
-            //{
-            //    byte[] filebytes;
-            //    foreach (var file in mailRequest.Attechments)
-            //    {
-            //        if (file.Length > 0)
-            //        {
-            //            using (var ms = new MemoryStream())
-            //            {
-            //                file.CopyTo(ms);
-            //                filebytes = ms.ToArray();
-            //            }
-            //            builder.Attachments.Add(file.FileName, filebytes, ContentType.Parse(file.ContentType));
-            //        }
-            //    }
-            //}
-            #endregion
-
-            email.Subject = "Twój Identyfikator odzyskiwania hasła";
-            if (mailRequest.file != null)
+            email.Subject = "Ваколатнома";
+            if (file != null)
             {
                 byte[] filebytes;
                 using (var ms = new MemoryStream())
                 {
-                    mailRequest.file.CopyTo(ms);
+                    file.CopyTo(ms);
                     filebytes = ms.ToArray();
                 }
-                builder.Attachments.Add(mailRequest.file.FileName, filebytes, ContentType.Parse(mailRequest.file.ContentType));
+                builder.Attachments.Add(email.Subject, filebytes);
             }
             builder.HtmlBody = "Документ" /*+ randomNumber.ToString()*/;
             email.Body = builder.ToMessageBody();
@@ -70,6 +52,18 @@ namespace Service.Services.MailService
             }
             //builder.HtmlBody = mailRequest.Body;
             //  builder.HtmlBody = string.Join(", ", gtin); // вот так вот надо делать Tostring(); //body
+        }
+        private Stream GetFileByPath(string Path)
+        {
+            MemoryStream ms = new MemoryStream();
+            string[] DocxFile = Directory.GetFiles($"{Path}", "*.docx");
+            for (int fileLength = 0; fileLength < DocxFile.Length; fileLength++)
+            {
+                string filePath = DocxFile[fileLength];
+                byte[] bytes = System.IO.File.ReadAllBytes(filePath);
+                 ms = new MemoryStream(bytes);
+            }
+            return ms;
         }
     }
 }

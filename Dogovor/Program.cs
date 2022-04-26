@@ -14,8 +14,23 @@ using Repository;
 using Service.Services.FormToFillService;
 using Entity.MailSettings;
 using Service.Services.MailService;
+using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ApplicationName = typeof(Program).Assembly.FullName,
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    EnvironmentName = Environments.Staging,
+    WebRootPath = "customwwwroot"
+});
+
+//builder.Services.u
+ConfigurationManager configuration = builder.Configuration;
+IWebHostEnvironment environment = builder.Environment;
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -31,12 +46,6 @@ builder.Services.AddScoped<IFormService, FormService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 //builder.Services.AddScoped<MailSettings>();
 builder.Services.AddScoped<IMailService, MailService>();
-//IHostBuilder CreateHostBuilder(string[] args) =>
-//         Host.CreateDefaultBuilder(args)
-//             .ConfigureWebHostDefaults(webBuilder =>
-//             {
-//                 webBuilder.UseStartup<Program>().UseWebRoot("wwwroot");
-//             });
 
 builder.Services.AddAuthentication(opt =>
 {
@@ -69,11 +78,15 @@ app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+builder.Services.AddDirectoryBrowser();
+app.UseStaticFiles();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseDefaultFiles();
+//}
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

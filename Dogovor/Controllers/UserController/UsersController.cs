@@ -28,8 +28,7 @@ namespace DogovorProject.Controllers
             if(returnMessage.Status == "200")
                 return Ok(returnMessage);
             else
-                return BadRequest(returnMessage);
-                       
+                return BadRequest(returnMessage);        
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login(AuthorizationDTO dto)
