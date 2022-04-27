@@ -3,6 +3,7 @@ using Entity.Entities;
 using Entity.ResponseMessage;
 using Microsoft.Office.Interop.Word;
 using Repository;
+using System.Text.RegularExpressions;
 
 namespace Service.Services.FormToFillService
 {
@@ -60,7 +61,7 @@ namespace Service.Services.FormToFillService
                 return new Response { Status = message.Status, Message = message.Message };
         }
 
-        public async Task<Response> OrderInfo(int orderId)
+        public async Task<Response> OrderInfo(int orderId, string Path)
         {
 
            var orderinfo = await _fRepository.OrderInfo(orderId);
@@ -105,17 +106,26 @@ namespace Service.Services.FormToFillService
                                                         newValidUntill.Replace("я", "и").Replace("г.", "").Trim().Replace($"{orderinfo.validUntill.Value.Year}", "") + "соли " + orderinfo.validUntill.Value.Year :
                                                         newValidUntill.Replace("а", "и").Replace("г.", "").Trim().Replace($"{orderinfo.validUntill.Value.Year}", "") + "соли " + orderinfo.validUntill.Value.Year;
             ValueLists.Add(lastValidUntill, newValidUntill);
-            await GenerateFileAsync(ValueLists);
+            Microsoft.Office.Interop.Word.Application doc = new Application();  
+            await GenerateFileAsync(ValueLists, newDocumentNumberReceiver, Path, newDocumentNum);
+            // FindAndReplace(Path);
            
            return new Response { Status = "200", Message = "Okay" };
         }
-        private async Task<string> GenerateFileAsync(Dictionary<string, object> dictionary)
+        private async Task<string> GenerateFileAsync(Dictionary<string, object> dictionary, string passportNumber, string path, string documentNumber)
         {
-            const string TemplateFileName = @"C:\Users\shahz\Music\NewDocument\letter.docx";
-            const string ResultFileName   = @"C:\Users\shahz\Music\NewDocument\letter2.docx";
-
+            System.IO.DirectoryInfo directorybyId;
+            if (!Directory.Exists(path + @"\User " + passportNumber))
+            {
+                directorybyId = Directory.CreateDirectory(path + @"\User " + passportNumber);
+            }
+            directorybyId = new DirectoryInfo(path + @"\User " + passportNumber);
+            DirectoryInfo dirInfo = new DirectoryInfo(path + "\\Files");
+            FileInfo[] wordFiles = dirInfo.GetFiles("*.docx");
+            FileInfo wordFile = wordFiles[0];
+            Object filename = (Object)wordFile.FullName;
             var wordApp = new Application();
-            var doc = wordApp.Documents.Open(TemplateFileName, false, true);
+            var doc = wordApp.Documents.Open(filename, false, true);
             foreach (var di in dictionary)
             {
                 var status = doc.Content.Find.Execute(FindText: di.Key,
@@ -129,7 +139,7 @@ namespace Service.Services.FormToFillService
                                         Format: false,
                                         ReplaceWith: di.Value,
                                         Replace: WdReplace.wdReplaceAll);
-                doc.SaveAs(ResultFileName);
+                doc.SaveAs(directorybyId + @"\"+$" Ваколатнома {documentNumber}.docx");
             }
             doc.Close();
             return "okay";

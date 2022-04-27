@@ -26,12 +26,12 @@ namespace Dogovor.Controllers
         [HttpPost("Index")]
         public async Task Index([FromForm]Maildto mailRequest)
         {
-            var path = GetPath("Files");
+            var path = GetPath();
             await _mailService.SendEmailAsync(mailRequest, path.Result);
         }
-        private async Task<string> GetPath(string Folder)
+        private async Task<string> GetPath()
         {
-            var path = _environment.WebRootPath + $"\\{Folder}";
+            var path = _environment.WebRootPath;
 
             if (!Directory.Exists(path))    
             {

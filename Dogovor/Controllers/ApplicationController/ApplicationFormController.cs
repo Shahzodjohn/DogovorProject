@@ -11,10 +11,12 @@ namespace Dogovor.Controllers.ApplicationController
     public class ApplicationFormController : ControllerBase
     {
         private readonly IFormService _formService;
+        private readonly IWebHostEnvironment _environment;
 
-        public ApplicationFormController(IFormService formService)
+        public ApplicationFormController(IFormService formService, IWebHostEnvironment environment)
         {
             _formService = formService;
+            _environment = environment;
         }
         [HttpPost("DocumentFirstPage")]
         public async Task<IActionResult> DocumentFirstPage(DocumentDTO dto)
@@ -59,7 +61,8 @@ namespace Dogovor.Controllers.ApplicationController
         [HttpGet]
         public async Task<IActionResult> FileValue(int OrderId)
         {
-            await _formService.OrderInfo(OrderId);
+            var Path = _environment.WebRootPath;
+            await _formService.OrderInfo(OrderId, Path);
             return Ok();
         }
 
