@@ -16,6 +16,6 @@ namespace Service.Services.FormToFillService
         public Task<Response> InsertReceiversInfoId(ReceiversInfoDTO dto);
         public Task<Response> InsertIntoPurposeId(PurposeDTO dto);
         public Task<Response> InsertIntoValidatonDatas(ValidationDataDTO dto);
-        public Task<Response> OrderInfo(int orderId);
+        public Task<Response> OrderInfo(int orderId,string Path);
     }
 }

@@ -13,5 +13,6 @@ namespace Entity.DataTransfer_s.MailRequestDTO
     {
         public string ToEmail { get; set; }
         //public IFormFile file { get; set; }
+        public int OrderId { get; set; }
     }
 }
