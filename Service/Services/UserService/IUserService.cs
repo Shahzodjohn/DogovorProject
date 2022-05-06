@@ -15,8 +15,8 @@ namespace Service.Services
 {
     public interface IUserService
     {
-        public Task<Response> RegisterUser(RegisterDTO dto);
-        public Task<Response> Login(AuthorizationDTO dto);
+        public Task<string> RegisterUser(RegisterDTO dto);
+        public Task<string> Login(AuthorizationDTO dto);
         public Task<UserDepartmentDTO> UsersInformation(ClaimsIdentity claim);
     }
 }

@@ -9,7 +9,6 @@ namespace Entity.Entities
 {
     public class PrincipalPosition
     {
-        [Key]
         public int Id { get; set; }
         public string PositionName { get; set; }
     }

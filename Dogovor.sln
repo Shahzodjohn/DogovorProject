@@ -1,17 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32407.343
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32407.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dogovor", "Dogovor\Dogovor.csproj", "{5E8B6C88-B011-4B78-845C-E6A9BFE67A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dogovor", "Dogovor\Dogovor.csproj", "{5E8B6C88-B011-4B78-845C-E6A9BFE67A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{14E40AF9-79C7-4CBF-AD94-D625CEA75A0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csproj", "{14E40AF9-79C7-4CBF-AD94-D625CEA75A0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{58345613-2E46-4D93-9C30-D6B4890617A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{58345613-2E46-4D93-9C30-D6B4890617A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{F4B1631A-DDA1-4E38-B0EB-1D07EE05C6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{F4B1631A-DDA1-4E38-B0EB-1D07EE05C6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionProvider", "ConnectionProvider\ConnectionProvider.csproj", "{732FF303-2309-4159-9CB7-84F4A76F4A1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectionProvider", "ConnectionProvider\ConnectionProvider.csproj", "{732FF303-2309-4159-9CB7-84F4A76F4A1B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "TestProject\UnitTests.csproj", "{B1B054E9-9FB7-450B-9E41-557065EF9852}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4DA3FBD-1E8B-43E5-AD9B-8B828D5FFEBE}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,10 @@ Global
 		{732FF303-2309-4159-9CB7-84F4A76F4A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{732FF303-2309-4159-9CB7-84F4A76F4A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{732FF303-2309-4159-9CB7-84F4A76F4A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1B054E9-9FB7-450B-9E41-557065EF9852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1B054E9-9FB7-450B-9E41-557065EF9852}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1B054E9-9FB7-450B-9E41-557065EF9852}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1B054E9-9FB7-450B-9E41-557065EF9852}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

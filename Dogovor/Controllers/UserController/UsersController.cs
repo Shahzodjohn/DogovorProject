@@ -15,9 +15,10 @@ namespace DogovorProject.Controllers
     {
         private readonly IUserService _userService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, ILogger<UsersController> logger)
         {
             _userService = userService;
+            logger.LogInformation("created homeController");
         }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDTO dto)
@@ -25,10 +26,10 @@ namespace DogovorProject.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var returnMessage = await _userService.RegisterUser(dto);
-            if(returnMessage.Status == "200")
-                return Ok(returnMessage);
+            if(returnMessage.Contains("400"))
+                return BadRequest(returnMessage);
             else
-                return BadRequest(returnMessage);        
+                return Ok(returnMessage);        
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login(AuthorizationDTO dto)
@@ -36,9 +37,9 @@ namespace DogovorProject.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
             var returnMessage = await _userService.Login(dto);
-            if(returnMessage.Status != "200")
+            if(returnMessage.Contains("400"))
                 return BadRequest(returnMessage);
-            return Ok(returnMessage);
+            return Ok("Json web token = " + returnMessage);
         }
         [HttpGet("CurrentUser")]
         [Authorize(AuthenticationSchemes = "Bearer")]
@@ -49,7 +50,5 @@ namespace DogovorProject.Controllers
             var userInfo = await _userService.UsersInformation(claim); 
             return Ok(userInfo);
         }
-        
-
     }
 }

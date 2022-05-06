@@ -28,28 +28,45 @@ namespace Service.Services
             _dRepository = dRepository;
             _roleRepository = roleRepository;
         }
-
-        public async Task<Response> Login(AuthorizationDTO dto)
+        Response response = new Response();
+        public async Task<string> Login(AuthorizationDTO dto)
         {
             var user = await _uRepository.GetUserbyEmail(dto.EmailAddress);
-            if (user == null)
-                return new Response { Status = "Error", Message = "This User does not exists!" };
-            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            try
             {
-                return new Response { Status = "400", Message = "Invalid credentials" };
+                if (user == null)
+                {
+                    return response.ToLog("400", "This User does not exists!");
+                }
+                if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+                {
+                    var msq = response.ToLog("400", "Invalid credentials");
+                    return msq;
+                }
+                var tokenJWT = await _uRepository.JSONToken(user);
+                return tokenJWT;
             }
-            var tokenJWT = await _uRepository.JSONToken(user);
-            return new Response { Status = "200", Message = tokenJWT };
+            catch (Exception ex)
+            {
+                return response.Log(null, ex.Message.ToString());
+            }
         }
 
-        public async Task<Response> RegisterUser(RegisterDTO dto)
+        public async Task<string> RegisterUser(RegisterDTO dto)
         {
-            if (dto.Password != dto.RepeatPassword)
-                return new Response{ Status = "400", Message = "The password doesn't match with repeated one!" };
-            if (!dto.EmailAddress.Contains("@team.alif.tj"))
-                return new Response { Status = "400", Message = "Error while adding a user, Please enter a valid Email Address!" };
-            else
-                await _uRepository.InsertUser(dto); return new Response { Status = "200", Message = "Success! User is registered!" };
+            try
+            {
+                if (dto.Password != dto.RepeatPassword)
+                    return response.ToLog("400", "The password doesn't match with repeated one!");
+                if (!dto.EmailAddress.Contains("@team.alif.tj"))
+                    return response.ToLog("400", "Error while adding a user, please enter a valid email address!");
+                else
+                    await _uRepository.InsertUser(dto); return "Success! User is registered!";
+            }
+            catch (Exception ex)
+            {
+               return response.ToLog(null, ex.Message.ToString());
+            }
         }
 
         public async Task<UserDepartmentDTO> UsersInformation(ClaimsIdentity claim)

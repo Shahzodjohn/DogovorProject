@@ -8,8 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="C:\Users\shahz\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Aspose.Words" Version="22.4.0" />
+    <PackageReference Include="Fusonic.Extensions.UnitTests.Adapters.InMemoryDatabase" Version="6.2.0" />
     <PackageReference Include="GemBox.Document" Version="33.0.1483" />
+    <PackageReference Include="InMemoryDatabase" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +35,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+	  <None Update="NLog.xsd">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
   </ItemGroup>
 
 </Project>
