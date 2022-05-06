@@ -22,7 +22,7 @@ namespace Dogovor.Controllers.ApplicationController
         public async Task<IActionResult> DocumentFirstPage(DocumentDTO dto)
         {
             var message = await _formService.InsertIntoDocument(dto);
-            if(message.Status != 200.ToString())
+            if(!message.Contains(200.ToString()))
                 return BadRequest(message);
             else return Ok(message);
         }
@@ -30,7 +30,7 @@ namespace Dogovor.Controllers.ApplicationController
         public async Task<IActionResult> PrincipalSecondPage(PrincipalInfoDTO dto)
         {
             var message = await _formService.InsertIntoPrincopalInfo(dto);
-            if (message.Status != 200.ToString())
+            if (!message.Contains(200.ToString()))
                 return BadRequest(message);
             else return Ok(message);
         }
@@ -38,34 +38,33 @@ namespace Dogovor.Controllers.ApplicationController
         public async Task<IActionResult> ReceiverThirdPage(ReceiversInfoDTO dto)
         {
             var message = await _formService.InsertReceiversInfoId(dto);
-            if (message.Status != 200.ToString())
+            if (!message.Contains(200.ToString()))
                 return BadRequest(message);
             else return Ok(message);
         }
-        [HttpPost("PurposeThirdPage")]
+        [HttpPost("PurposePageFour")]
         public async Task<IActionResult> PurposePageFour(PurposeDTO dto)
         {
             var message = await _formService.InsertIntoPurposeId(dto);
-            if (message.Status != 200.ToString())
+            if (!message.Contains(200.ToString()))
                 return BadRequest(message);
             else return Ok(message);
         }
-        [HttpPost("ValidationFoursPage")]
+        [HttpPost("ValidationPageFive")]
         public async Task<IActionResult> ValidationPageFive(ValidationDataDTO dto)
         {
             var message = await _formService.InsertIntoValidatonDatas(dto);
-            if (message.Status != 200.ToString())
+            if (!message.Contains(200.ToString()))
                 return BadRequest(message);
             else return Ok(message);
         }
-        [HttpGet]
-        public async Task<IActionResult> FileValue(int OrderId)
+        [HttpGet("GenerateFile")]
+        public async Task<IActionResult> FileValue([FromQuery]int OrderId)
         {
             var Path = _environment.WebRootPath;
-            await _formService.OrderInfo(OrderId, Path);
-            return Ok();
+            var finalPath = await _formService.OrderInfo(OrderId, Path);
+            var fileName = finalPath.Split("\\").Last().Trim();
+            return File(await System.IO.File.ReadAllBytesAsync(finalPath), "application/octet-stream", fileName);
         }
-
     }
-
 }

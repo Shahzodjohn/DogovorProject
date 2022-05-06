@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using Entity.DataTransfer_s.MailRequestDTO;
+﻿using Entity.DataTransfer_s.MailRequestDTO;
 using Entity.MailSettings;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using Microsoft.Office.Interop.Word;
 using MimeKit;
 using Repository;
 
@@ -26,7 +19,7 @@ namespace Service.Services.MailService
             _settings = options.Value;
             _formRepository = formRepository;
         }
-        public async System.Threading.Tasks.Task SendEmailAsync(Maildto mailRequest, string Path)
+        public async Task SendEmailAsync(Maildto mailRequest, string Path)
         {
             var OrderInfo = await _formRepository.OrderInfo(mailRequest.OrderId);
             var UserPassport = OrderInfo.ReceiversInfo.PassportNumber;
@@ -44,9 +37,8 @@ namespace Service.Services.MailService
             var builder = new BodyBuilder();
             email.Subject = "Ваколатнома";
             builder.Attachments.Add(newPath);
-            builder.HtmlBody = "Документ" /*+ randomNumber.ToString()*/;
+            builder.HtmlBody = "Документ";
             email.Body = builder.ToMessageBody();
-            
             using (var smtp = new SmtpClient())
             {
                 smtp.Connect(_settings.Host, _settings.Port, SecureSocketOptions.StartTls);

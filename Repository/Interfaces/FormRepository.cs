@@ -40,18 +40,21 @@ namespace Repository.Interfaces
                 await _context.formsToFill.AddAsync(formApplication);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new Response { Status = "400", Message = "BadRequest!" };
+                return new Response { Status = "400 || Error while adding into rote InsertIntoDocument!", Message = ex.InnerException.ToString() };
             }
             return new Response { Status = "200", Message = $"OrderId => {formApplication.Id}" };
         }
 
         public async Task<Response> InsertIntoPrincipalInfo(PrincipalInfoDTO dto)
         {
+            
             var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
+                if (findOrder == null)
+                    return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
                 var principalInfo = new PrincipalInfo
                 {
                     PrincipalPlaceId = dto.PrincipalPlaceId,
@@ -65,9 +68,9 @@ namespace Repository.Interfaces
                 findOrder.principalInfoId = principalInfo.Id;
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new Response { Status = "400", Message = "BadRequest!" };
+                return new Response { Status = "400 || Error while adding into rote InsertIntoPrincipalInfo!", Message = ex.InnerException.ToString() };
             }
             return new Response { Status = "200", Message = "Success!" };
             
@@ -78,6 +81,8 @@ namespace Repository.Interfaces
             var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
+                if (findOrder == null)
+                    return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
                 var receiverInfo = new ReceiverInfo
                 {
                     ReceiversFullname = dto.ReceiversFullname,
@@ -92,9 +97,9 @@ namespace Repository.Interfaces
                 findOrder.receiversInfoId = receiverInfo.Id;
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new Response { Status = "400", Message = "BadRequest!" };
+                return new Response { Status = "400 || Error while adding into rote InsertReceiversInfoId!", Message = ex.InnerException.ToString() };
             }
             return new Response { Status = "200", Message = "Success!" };
         }
@@ -104,36 +109,42 @@ namespace Repository.Interfaces
             var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
+                if (findOrder == null)
+                    return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
                 findOrder.purposeId = dto.PurposeId;
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new Response { Status = "400", Message = "BadRequest!" };
+                return new Response { Status = "400 || Error while adding into rote InsertIntoPurposeId!", Message = ex.InnerException.ToString() };
             }
             return new Response { Status = "200", Message = "Success!" };
         }
 
         public async Task<Response> InsertIntoValidatonDatas(ValidationDataDTO dto)
         {
+            var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
-                var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
+                if (findOrder == null)
+                    return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
                 findOrder.validFrom = dto.ValidFrom;
                 findOrder.validUntill = dto.ValidUntill;
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return new Response { Status = "400", Message = "BadRequest!" };
+                return new Response { Status = "400 || Error while adding into rote InsertIntoValidatonDatas!", Message = ex.InnerException.ToString() };
             }
             return new Response { Status = "200", Message = "Success!" };
         }
 
-        public async Task<FormToFill> OrderInfo(int orderId)
+        public async Task<FormToFill?> OrderInfo(int orderId)
         {
-            var FindOrder = await _context.formsToFill.FindAsync(orderId);
-            return FindOrder;
+            var findOrder = await _context.formsToFill.FindAsync(orderId);
+            if (findOrder != null)
+                return findOrder;
+            return null;
         }
     }
 }
