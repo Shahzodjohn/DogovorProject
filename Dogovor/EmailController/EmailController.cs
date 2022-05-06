@@ -10,37 +10,30 @@ namespace Dogovor.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class EmailController : ControllerBase
     {
-        private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _environment;
         private readonly IMailService _mailService;
 
-        public TestController(IMailService mailService, AppDbContext context, IWebHostEnvironment webHostEnvironment)
+        public EmailController(IWebHostEnvironment environment, IMailService mailService)
         {
+            _environment = environment;
             _mailService = mailService;
-            _context = context;
-            _environment = webHostEnvironment;
         }
 
-        [HttpPost("Index")]
-        public async Task Index([FromForm]Maildto mailRequest)
+        [HttpPost("SendEmail")]
+        public async Task SendEmail([FromForm]Maildto mailRequest)
         {
             var path = GetPath();
             await _mailService.SendEmailAsync(mailRequest, path.Result);
         }
+
         private async Task<string> GetPath()
         {
             var path = _environment.WebRootPath;
-
-            if (!Directory.Exists(path))    
-            {
+            if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            }
             return path;
-
         }
-
-
     }
 }

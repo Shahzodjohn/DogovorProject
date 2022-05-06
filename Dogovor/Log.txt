@@ -1,0 +1,170 @@
+
+Log Entry : 10:17:22 10:17:22
+  : Error||This User does not exists!
+------------------------------------------------
+
+Log Entry : 10:20:04 10:20:04
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 
+Log Entry : 
+Log Entry : 
+Log Entry : 
+Log Entry : 11:13:05 11:13:05
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 11:25:34 11:25:34
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 12:04:46 12:04:46
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 15:23:11 15:23:11
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 15:24:11 15:24:11
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 16:18:03 16:18:03
+  : Error || This User does not exists!
+------------------------------------------------
+
+Log Entry : 16:19:27 16:19:27
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:20:35 16:20:35
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:21:35 16:21:35
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:25:55 16:25:55
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:26:15 16:26:15
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:27:52 16:27:52
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:29:09 16:29:09
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 16:29:46 16:29:46
+  : 400 || Invalid credentials
+------------------------------------------------
+
+Log Entry : 17:53:56 17:53:56
+  : 400 || Error while adding a user, please enter a valid email address!
+------------------------------------------------
+
+Log Entry : 9:31:19 9:31:19
+  : 400 || BadRequest!
+------------------------------------------------
+
+Log Entry : 9:34:04 9:34:04
+  : 400 || Error while adding into rote InsertIntoDocument!
+------------------------------------------------
+
+Log Entry : 9:37:25 9:37:25
+  : 400 || BadRequest!
+------------------------------------------------
+
+Log Entry : 9:40:29 9:40:29
+  : 400 || BadRequest!
+------------------------------------------------
+
+Log Entry : 9:56:39 9:56:39
+  : 400 || Error while adding into rote InsertIntoDocument!
+------------------------------------------------
+
+Log Entry : 9:59:35 9:59:35
+  : 400 || Microsoft.Data.SqlClient.SqlException (0x80131904): Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_documents_cities_cityId". Конфликт произошел в базе данных "Dogovordb", таблица "dbo.cities", column 'Id'.
+Выполнение данной инструкции было прервано.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__188_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:0965aca5-2c46-466f-94dc-268d53c72ada
+Error Number:547,State:0,Class:16
+------------------------------------------------
+
+Log Entry : 10:08:29 10:08:29
+  : 400 || Error while adding into rote InsertIntoDocument! || Microsoft.Data.SqlClient.SqlException (0x80131904): Конфликт инструкции INSERT с ограничением FOREIGN KEY "FK_documents_cities_cityId". Конфликт произошел в базе данных "Dogovordb", таблица "dbo.cities", column 'Id'.
+Выполнение данной инструкции было прервано.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__188_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__272_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:9cf73dde-0b02-4b7d-935d-10a2c0a9896a
+Error Number:547,State:0,Class:16
+------------------------------------------------
+
+Log Entry : 10:12:25 10:12:25
+  : 400 || Error while adding a user, please enter a valid email address!
+------------------------------------------------
+
+Log Entry : 15:41:17 15:41:17
+  : 400 || CityNotFound!
+------------------------------------------------
+
+Log Entry : 15:49:10 15:49:10
+  : 400 || City not found!
+------------------------------------------------
+
+Log Entry : 11:16:57 11:16:57
+  : 400 || Error! Entities are null!
+------------------------------------------------
+
+Log Entry : 06.05.2022 0:00:00 11:18:53
+  : 400 || Id does not exist!
+------------------------------------------------
+
+Log Entry : System.Func`1[System.DateTime] 11:25:32
+  : 400 || Id does not exist!
+------------------------------------------------
+
+Log Entry : Fri, 06 May 2022 11:28:18 GMT 11:28:18
+  : 400 || Id does not exist!
+------------------------------------------------
+
+Log Entry : Fri, 06 May 2022 13:38:25 GMT 13:38:25
+  : 400 || Principal Name Found!
+-----------------------------------------------------------------------------------
+
+Log Entry : Fri, 06 May 2022 13:50:48 GMT 13:50:48
+  : 400 || Error! Entities are null!
+-----------------------------------------------------------------------------------
+
+Log Entry : Fri, 06 May 2022 14:44:35 GMT 14:44:35
+  : 400 || Error! Entities are null!
+-----------------------------------------------------------------------------------
+
+Log Entry : Fri, 06 May 2022 15:38:51 GMT 15:38:51
+  : 400 || Error! Entities are null!
+-----------------------------------------------------------------------------------

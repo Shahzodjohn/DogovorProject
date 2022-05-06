@@ -11,11 +11,11 @@ namespace Service.Services.FormToFillService
 {
     public interface IFormService
     {
-        public Task<Response> InsertIntoDocument(DocumentDTO dto);
-        public Task<Response> InsertIntoPrincopalInfo(PrincipalInfoDTO dto);
-        public Task<Response> InsertReceiversInfoId(ReceiversInfoDTO dto);
-        public Task<Response> InsertIntoPurposeId(PurposeDTO dto);
-        public Task<Response> InsertIntoValidatonDatas(ValidationDataDTO dto);
-        public Task<Response> OrderInfo(int orderId,string Path);
+        public Task<string> InsertIntoDocument(DocumentDTO dto);
+        public Task<string> InsertIntoPrincopalInfo(PrincipalInfoDTO dto);
+        public Task<string> InsertReceiversInfoId(ReceiversInfoDTO dto);
+        public Task<string> InsertIntoPurposeId(PurposeDTO dto);
+        public Task<string> InsertIntoValidatonDatas(ValidationDataDTO dto);
+        public Task<string> OrderInfo(int orderId,string Path);
     }
 }
