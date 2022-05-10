@@ -18,5 +18,6 @@ namespace Service.Services
         public Task<string> RegisterUser(RegisterDTO dto);
         public Task<string> Login(AuthorizationDTO dto);
         public Task<UserDepartmentDTO> UsersInformation(ClaimsIdentity claim);
+        public Task<string> SendEmailCode(MailResetDTO request);
     }
 }

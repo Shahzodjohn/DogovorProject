@@ -1,5 +1,6 @@
 ﻿using Entity.DataTransfer_s;
 using Entity.DataTransfer_s.Authorization;
+using Entity.ResponseMessage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,14 @@ namespace DogovorProject.Controllers
             if (claim == null) return BadRequest(400);
             var userInfo = await _userService.UsersInformation(claim); 
             return Ok(userInfo);
+        }
+        [HttpPost("SendEmailMessage")]
+        public async Task<IActionResult> SendEmailMessage(MailResetDTO dTO)
+        {
+            var message = await _userService.SendEmailCode(dTO);
+            if(!message.Contains("200"))
+                return BadRequest(new Response { Status = "Error", Message = message.ToString() });
+            return Ok(message);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace ConnectionProvider
         public DbSet<Purpose> purposes {get;set;}
         public DbSet<ReceiverInfo> receiverInfos {get;set;}
         public DbSet<ReceiversPassportType> receiversPassportTypes{get;set;}
+        public DbSet<ResetPassword> resetPasswords {get;set;}
 
 
         protected override void OnModelCreating(ModelBuilder builder)

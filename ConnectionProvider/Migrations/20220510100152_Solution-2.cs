@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ConnectionProvider.Migrations
 {
-    public partial class document : Migration
+    public partial class Solution2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace ConnectionProvider.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -297,6 +297,26 @@ namespace ConnectionProvider.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "resetPasswords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RandomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ValidDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_resetPasswords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_resetPasswords_users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "users",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "cities",
                 columns: new[] { "Id", "CityName" },
@@ -349,7 +369,7 @@ namespace ConnectionProvider.Migrations
             migrationBuilder.InsertData(
                 table: "receiversPassportTypes",
                 columns: new[] { "Id", "Type" },
-                values: new object[] { 1, "Шиносномаи Чумхурии Точикистон" });
+                values: new object[] { 1, "шиносномаи" });
 
             migrationBuilder.InsertData(
                 table: "roles",
@@ -416,6 +436,11 @@ namespace ConnectionProvider.Migrations
                 column: "ReceiversPassportTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_resetPasswords_UserId",
+                table: "resetPasswords",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_users_DepartmentId",
                 table: "users",
                 column: "DepartmentId");
@@ -432,7 +457,7 @@ namespace ConnectionProvider.Migrations
                 name: "formsToFill");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "resetPasswords");
 
             migrationBuilder.DropTable(
                 name: "documents");
@@ -447,10 +472,7 @@ namespace ConnectionProvider.Migrations
                 name: "receiverInfos");
 
             migrationBuilder.DropTable(
-                name: "departments");
-
-            migrationBuilder.DropTable(
-                name: "roles");
+                name: "users");
 
             migrationBuilder.DropTable(
                 name: "cities");
@@ -472,6 +494,12 @@ namespace ConnectionProvider.Migrations
 
             migrationBuilder.DropTable(
                 name: "receiversPassportTypes");
+
+            migrationBuilder.DropTable(
+                name: "departments");
+
+            migrationBuilder.DropTable(
+                name: "roles");
         }
     }
 }

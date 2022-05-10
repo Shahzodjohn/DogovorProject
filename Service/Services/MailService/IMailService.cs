@@ -10,5 +10,6 @@ namespace Service.Services.MailService
     public interface IMailService
     {
         Task SendEmailAsync(Maildto mailRequest, string FilePath);
+        Task<string> SendEmailResetAsync(string ToEmail);
     }
 }

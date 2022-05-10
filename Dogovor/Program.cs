@@ -31,6 +31,7 @@ using Repository.Purpose;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     //ApplicationName = typeof(Program).Assembly.FullName,
@@ -49,6 +50,7 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<AppDbContext>(x => x.UseInMemoryDatabase("TestDb").UseLazyLoadingProxies());
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(connectionString, b => b.MigrationsAssembly("ConnectionProvider")).UseLazyLoadingProxies());
+//builder.Services.AddDbContext<AppDbContext>(x => x.UseNpgsql(connectionString, b => b.MigrationsAssembly("ConnectionProvider")).UseLazyLoadingProxies());
 builder.Services.AddCors();
 builder.Services.AddSingleton<ApplicationFormController>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -72,6 +74,7 @@ builder.Services.AddScoped<IReceiversPassportTypeRepository, ReceiversPassportTy
 builder.Services.AddScoped<IPrincipalReasonService, PrincipalReasonService>();
 builder.Services.AddScoped<IPrincipalReasonRepository, PrincipalReasonRepository>();
 builder.Services.AddScoped<IPurposeRepository,PurposeRepository>();
+builder.Services.AddScoped<ICodeResetRepository,CodeResetRepository>();
 builder.Services.AddScoped<IPurposeService, PurposeService>();
 builder.Services.AddAuthentication(opt =>
 {

@@ -55,7 +55,6 @@ namespace ConnectionProvider.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CityName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -387,8 +386,33 @@ namespace ConnectionProvider.Migrations
                         new
                         {
                             Id = 1,
-                            Type = "Шиносномаи Чумхурии Точикистон"
+                            Type = "шиносномаи"
                         });
+                });
+
+            modelBuilder.Entity("Entity.Entities.ResetPassword", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("RandomNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ValidDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("resetPasswords");
                 });
 
             modelBuilder.Entity("Entity.Entities.Role", b =>
@@ -539,6 +563,15 @@ namespace ConnectionProvider.Migrations
                     b.Navigation("Citizenship");
 
                     b.Navigation("ReceiversPassportType");
+                });
+
+            modelBuilder.Entity("Entity.Entities.ResetPassword", b =>
+                {
+                    b.HasOne("Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entity.User", b =>

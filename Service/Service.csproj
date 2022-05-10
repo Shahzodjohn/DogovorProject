@@ -7,8 +7,8 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <COMReference Include="Microsoft.Office.Interop.Word">
+  <!--<ItemGroup>
+    --><!--<COMReference Include="Microsoft.Office.Interop.Word">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>7</VersionMinor>
       <VersionMajor>8</VersionMajor>
@@ -16,8 +16,8 @@
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
+    </COMReference>--><!--
+  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Grpc.Core.Api" Version="2.45.0" />

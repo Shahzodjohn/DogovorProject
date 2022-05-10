@@ -37,7 +37,7 @@ namespace Dogovor.Controllers
         {
             return Ok(await _typeService.ReceiversPassportTypeList());
         }
-        [HttpGet("GetReceiversPassportTypeById")]
+        [HttpGet("{Id}")]
         public async Task<IActionResult> GetReceiversPassportTypeById(int Id)
         {
             var message = await _typeService.GetReceiversPassportTypeById(Id);

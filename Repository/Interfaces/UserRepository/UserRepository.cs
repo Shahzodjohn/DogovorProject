@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
+using Entity.Entities;
 
 namespace Interface.Interfaces
 {
@@ -30,6 +32,17 @@ namespace Interface.Interfaces
         {
             var findUser = await _context.users.FirstOrDefaultAsync(x=>x.EmailAddress == email.ToUpper());
             return findUser;
+        }
+        public async Task<ResetPassword> GetUserCodeCompared(string email)
+        {
+            var findUser = await _context.users.FirstOrDefaultAsync(x=>x.EmailAddress == email.ToUpper());
+            if(findUser == null)
+                return null;
+            var UserCode = (from r in _context.resetPasswords
+                            join u in _context.users on r.UserId equals u.Id
+                            where r.UserId == findUser.Id
+                            select r).FirstOrDefault();
+            return UserCode;
         }
 
         public async Task<User> GetUserById(int Id)
@@ -51,6 +64,10 @@ namespace Interface.Interfaces
             await _context.SaveChangesAsync();
             return user;
         }
+        
+
+
+
         public async Task<string> JSONToken(User user)
         {
             var userExists = await _context.users.FirstOrDefaultAsync(x => x.Id == user.Id);

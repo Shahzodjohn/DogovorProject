@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CurrentUser\**" />
+    <EmbeddedResource Remove="CurrentUser\**" />
+    <None Remove="CurrentUser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="MailKit" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.16" />
@@ -19,10 +25,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
     <PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CurrentUser\" />
   </ItemGroup>
 
 </Project>

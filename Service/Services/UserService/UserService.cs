@@ -6,6 +6,7 @@ using Entity.ResponseMessage;
 using Interface.Interfaces;
 using Repository.Interfaces;
 using Repository.Interfaces.DepartmentRepository;
+using Service.Services.MailService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace Service.Services
         private readonly IUserRepository _uRepository;
         private readonly IDepartmentRepository _dRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly IMailService _mailService;
 
-        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository, IRoleRepository roleRepository)
+        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository, IRoleRepository roleRepository, IMailService mailService)
         {
             _uRepository = userRepository;
             _dRepository = dRepository;
             _roleRepository = roleRepository;
+            _mailService = mailService;
         }
         Response response = new Response();
         public async Task<string> Login(AuthorizationDTO dto)
@@ -86,5 +89,25 @@ namespace Service.Services
             };
             return userInfo;
         }
+        public async Task<string> SendEmailCode(MailResetDTO request)
+        {
+            try
+            {
+                var ValidUser = await _uRepository.GetUserbyEmail(request.ToEmail);
+                if (ValidUser == null)
+                {
+                    return response.ToLog("400", "User not found!");
+                }
+                var message = await _mailService.SendEmailResetAsync(request.ToEmail);
+                if (!message.Contains("200"))
+                    return response.ToLog("400", "Error while sending mail message");
+                return message;
+            }
+            catch (Exception ex)
+            {
+                return response.ToLog(null, "400 || Message was not sent!" + ex.InnerException.ToString() );
+            }
+        }
+
     }
 }

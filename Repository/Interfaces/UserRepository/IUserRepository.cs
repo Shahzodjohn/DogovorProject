@@ -1,6 +1,7 @@
 ﻿using Entity;
 using Entity.DataTransfer_s;
 using Entity.DataTransfer_s.Authorization;
+using Entity.Entities;
 using Entity.ResponseMessage;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace Interface.Interfaces
         public Task<User> GetUserbyEmail(string email);
         public Task<string> JSONToken(User user);
         public Task<User> GetUserById(int Id);
+        public Task<ResetPassword> GetUserCodeCompared(string email);
     }
 }

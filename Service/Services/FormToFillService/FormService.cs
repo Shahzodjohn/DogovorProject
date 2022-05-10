@@ -1,7 +1,7 @@
 ﻿using Entity.DataTransfer_s.FormApplication;
 using Entity.Entities;
 using Entity.ResponseMessage;
-using Microsoft.Office.Interop.Word;
+//using Microsoft.Office.Interop.Word;
 using Repository;
 using System.Text.RegularExpressions;
 
@@ -131,35 +131,35 @@ namespace Service.Services.FormToFillService
         }
         private string GenerateFile(Dictionary<string, object> dictionary, string passportNumber, string path, string documentNumber)
         {
-            System.IO.DirectoryInfo directorybyId;
-            if (!Directory.Exists(path + @"\User " + passportNumber))
-            {
-                directorybyId = Directory.CreateDirectory(path + @"\User " + passportNumber);
-            }
-            directorybyId = new DirectoryInfo(path + @"\User " + passportNumber);
-            DirectoryInfo dirInfo = new DirectoryInfo(path + "\\Files");
-            FileInfo[] wordFiles = dirInfo.GetFiles("*.docx");
-            FileInfo wordFile = wordFiles[0];
-            Object filename = (Object)wordFile.FullName;
-            var wordApp = new Application();
-            var doc = wordApp.Documents.Open(filename, false, true);
-            foreach (var di in dictionary)
-            {
-                var status = doc.Content.Find.Execute(FindText: di.Key,
-                                        MatchCase: false,
-                                        MatchWholeWord: false,
-                                        MatchWildcards: false,
-                                        MatchSoundsLike: false,
-                                        MatchAllWordForms: false,
-                                        Forward: true, //this may be the one
-                                        Wrap: false,
-                                        Format: false,
-                                        ReplaceWith: di.Value,
-                                        Replace: WdReplace.wdReplaceAll);
-                doc.SaveAs(directorybyId + @"\" + $" Ваколатнома {documentNumber}.docx");
-            }
-            doc.Close();
-            return directorybyId + @"\" + $" Ваколатнома {documentNumber}.docx";
+            //System.IO.DirectoryInfo directorybyId;
+            //if (!Directory.Exists(path + @"\User " + passportNumber))
+            //{
+            //    directorybyId = Directory.CreateDirectory(path + @"\User " + passportNumber);
+            //}
+            //directorybyId = new DirectoryInfo(path + @"\User " + passportNumber);
+            //DirectoryInfo dirInfo = new DirectoryInfo(path + "\\Files");
+            //FileInfo[] wordFiles = dirInfo.GetFiles("*.docx");
+            //FileInfo wordFile = wordFiles[0];
+            //Object filename = (Object)wordFile.FullName;
+            //var wordApp = new Application();
+            //var doc = wordApp.Documents.Open(filename, false, true);
+            //foreach (var di in dictionary)
+            //{
+            //    var status = doc.Content.Find.Execute(FindText: di.Key,
+            //                            MatchCase: false,
+            //                            MatchWholeWord: false,
+            //                            MatchWildcards: false,
+            //                            MatchSoundsLike: false,
+            //                            MatchAllWordForms: false,
+            //                            Forward: true, //this may be the one
+            //                            Wrap: false,
+            //                            Format: false,
+            //                            ReplaceWith: di.Value,
+            //                            Replace: WdReplace.wdReplaceAll);
+            //    doc.SaveAs(directorybyId + @"\" + $" Ваколатнома {documentNumber}.docx");
+            //}
+            //doc.Close();
+            return ""; // directorybyId + @"\" + $" Ваколатнома {documentNumber}.docx";
         }
     }
 }
