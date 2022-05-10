@@ -59,5 +59,22 @@ namespace DogovorProject.Controllers
                 return BadRequest(new Response { Status = "Error", Message = message.ToString() });
             return Ok(message);
         }
+        [HttpPost("VarifyUser")]
+        public async Task<ActionResult> VerifyUser(RandomNumberDTO dto)
+        {
+            var UserEmail = await _userService.VerifyUser(dto);
+            if (UserEmail == null) { return BadRequest(); };
+            return Ok(new Response { Status = "Ok", Message = "Verification success!" });
+        }
+        [HttpPut("UpdatePassword")]
+        public async Task<ActionResult> ResetPassword(NewPasswordDTO dto)
+        {
+            var reset = await _userService.ResetPassword(dto);
+            if (reset == null)
+            {
+                return BadRequest(new Response { Status = "Error", Message = "Password was not updated!" });
+            }
+            return Ok(new Response { Status = "Success!", Message = "The Password is updated successfully" });
+        }
     }
 }

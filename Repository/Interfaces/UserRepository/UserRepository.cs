@@ -64,9 +64,26 @@ namespace Interface.Interfaces
             await _context.SaveChangesAsync();
             return user;
         }
-        
+        public async Task<string> GetUserByEmailAndCode(RandomNumberDTO dto)
+        {
+            var UserEmail = (from r in _context.resetPasswords
+                             join u in _context.users on r.UserId equals u.Id
+                             where u.EmailAddress.ToLower() == dto.Email.ToLower() && r.RandomNumber == dto.RandomNumber
+                             select new { u.EmailAddress, r.RandomNumber }).FirstOrDefault();
+            if(UserEmail == null)
+                return null;
+            return UserEmail.ToString();
+        }
 
-
+        public async Task<User> ResetPassword(NewPasswordDTO dto)
+        {
+            var currentUser = await _context.users.FirstOrDefaultAsync(x => x.EmailAddress == dto.Email);
+            if (currentUser == null)
+                return null;
+            currentUser.Password = BCrypt.Net.BCrypt.HashPassword(dto.NewPassword);
+            await _context.SaveChangesAsync();
+            return currentUser;
+        }
 
         public async Task<string> JSONToken(User user)
         {

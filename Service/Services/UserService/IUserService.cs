@@ -19,5 +19,7 @@ namespace Service.Services
         public Task<string> Login(AuthorizationDTO dto);
         public Task<UserDepartmentDTO> UsersInformation(ClaimsIdentity claim);
         public Task<string> SendEmailCode(MailResetDTO request);
+        public Task<string> VerifyUser(RandomNumberDTO dto);
+        public Task<string> ResetPassword(NewPasswordDTO dto);
     }
 }

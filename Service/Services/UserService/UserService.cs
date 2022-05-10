@@ -108,6 +108,34 @@ namespace Service.Services
                 return response.ToLog(null, "400 || Message was not sent!" + ex.InnerException.ToString() );
             }
         }
+        public async Task<string> VerifyUser(RandomNumberDTO dto)
+        {
+            try
+            {
+                var message = await _uRepository.GetUserByEmailAndCode(dto);
+                if (message == null)
+                    return response.ToLog("Error", "Invalid code");
+                return message;
+            }
+            catch (Exception ex)
+            {
+                return response.ToLog(null, "400 || Error while checking out the code!" + ex.InnerException.ToString());
+            }
+        }
 
+        public async Task<string> ResetPassword(NewPasswordDTO dto)
+        {
+            try
+            {
+                var message = await _uRepository.ResetPassword(dto);
+                if (message == null)
+                    return response.ToLog("Error", "Invalid code");
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return response.ToLog(null, "400 || Error while checking out the code!" + ex.InnerException.ToString());
+            }
+        }
     }
 }
