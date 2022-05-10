@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>09a23289-782e-4b21-886a-e72be985caa0</ProjectGuid>
+    <ProjectGuid>cf9c6c64-c5cf-455e-a3ca-2bfa0c4bf3aa</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>dogovor</DockerServiceName>
