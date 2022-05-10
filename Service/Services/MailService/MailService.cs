@@ -69,8 +69,7 @@ namespace Service.Services.MailService
             // var userCode = await _context.DmUsers.FirstOrDefaultAsync(x=>x.Email == t)
             var compare = await _userRepository.GetUserbyEmail(ToUser);
             var UserCode = await _userRepository.GetUserCodeCompared(ToEmail);
-            //if (UserCode == null)
-            //    return response.ToLog("400", "Error! Email not found!");
+            
             var date = DateTime.Now.AddHours(2);
             if (UserCode != null)
             {
