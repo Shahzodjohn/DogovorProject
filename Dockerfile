@@ -15,4 +15,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app/Dogovor
 
 COPY --from=build-env /app/Dogovor/out .
-ENTRYPOINT ["dotnet", "Dogovor.dll","--urls=0.0.0.0:5145"]
+ENTRYPOINT ["dotnet", "Dogovor.dll"]

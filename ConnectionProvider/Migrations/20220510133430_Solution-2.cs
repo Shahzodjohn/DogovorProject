@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -13,9 +14,9 @@ namespace ConnectionProvider.Migrations
                 name: "cities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CityName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,9 +27,9 @@ namespace ConnectionProvider.Migrations
                 name: "citizenships",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CitizenOf = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CitizenOf = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,9 +40,9 @@ namespace ConnectionProvider.Migrations
                 name: "departments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DepartmentName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,9 +53,9 @@ namespace ConnectionProvider.Migrations
                 name: "principalNames",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PrincipalFullName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PrincipalFullName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,9 +66,9 @@ namespace ConnectionProvider.Migrations
                 name: "principalPlaces",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PrincipalPlaceName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PrincipalPlaceName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,9 +79,9 @@ namespace ConnectionProvider.Migrations
                 name: "principalPositions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PositionName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PositionName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,9 +92,9 @@ namespace ConnectionProvider.Migrations
                 name: "principalReasons",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReasonType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ReasonType = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,9 +105,9 @@ namespace ConnectionProvider.Migrations
                 name: "purposes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PurposeText = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PurposeText = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -117,9 +118,9 @@ namespace ConnectionProvider.Migrations
                 name: "receiversPassportTypes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Type = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -130,9 +131,9 @@ namespace ConnectionProvider.Migrations
                 name: "roles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,11 +144,11 @@ namespace ConnectionProvider.Migrations
                 name: "documents",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumentNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    cityId = table.Column<int>(type: "int", nullable: false),
-                    DateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DocumentNumber = table.Column<string>(type: "text", nullable: false),
+                    cityId = table.Column<int>(type: "integer", nullable: false),
+                    DateOfIssue = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -164,13 +165,13 @@ namespace ConnectionProvider.Migrations
                 name: "principalInfos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PrincipalPlaceId = table.Column<int>(type: "int", nullable: false),
-                    PrincipalPositionId = table.Column<int>(type: "int", nullable: false),
-                    PrincipalNameId = table.Column<int>(type: "int", nullable: false),
-                    PrincipalReasonId = table.Column<int>(type: "int", nullable: false),
-                    ReceiversAmount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PrincipalPlaceId = table.Column<int>(type: "integer", nullable: false),
+                    PrincipalPositionId = table.Column<int>(type: "integer", nullable: false),
+                    PrincipalNameId = table.Column<int>(type: "integer", nullable: false),
+                    PrincipalReasonId = table.Column<int>(type: "integer", nullable: false),
+                    ReceiversAmount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,14 +206,14 @@ namespace ConnectionProvider.Migrations
                 name: "receiverInfos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReceiversFullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceiversPassportTypeId = table.Column<int>(type: "int", nullable: false),
-                    PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PassportPlaceOfIssue = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PassportDateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    СitizenshipId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ReceiversFullname = table.Column<string>(type: "text", nullable: false),
+                    ReceiversPassportTypeId = table.Column<int>(type: "integer", nullable: false),
+                    PassportNumber = table.Column<string>(type: "text", nullable: false),
+                    PassportPlaceOfIssue = table.Column<string>(type: "text", nullable: false),
+                    PassportDateOfIssue = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    СitizenshipId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,12 +236,12 @@ namespace ConnectionProvider.Migrations
                 name: "users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EmailAddress = table.Column<string>(type: "text", nullable: true),
+                    Password = table.Column<string>(type: "text", nullable: true),
+                    DepartmentId = table.Column<int>(type: "integer", nullable: false),
+                    RoleId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -263,14 +264,14 @@ namespace ConnectionProvider.Migrations
                 name: "formsToFill",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    documentId = table.Column<int>(type: "int", nullable: true),
-                    principalInfoId = table.Column<int>(type: "int", nullable: true),
-                    receiversInfoId = table.Column<int>(type: "int", nullable: true),
-                    purposeId = table.Column<int>(type: "int", nullable: true),
-                    validFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    validUntill = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    documentId = table.Column<int>(type: "integer", nullable: true),
+                    principalInfoId = table.Column<int>(type: "integer", nullable: true),
+                    receiversInfoId = table.Column<int>(type: "integer", nullable: true),
+                    purposeId = table.Column<int>(type: "integer", nullable: true),
+                    validFrom = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    validUntill = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -301,11 +302,11 @@ namespace ConnectionProvider.Migrations
                 name: "resetPasswords",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RandomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ValidDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RandomNumber = table.Column<string>(type: "text", nullable: false),
+                    ValidDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -315,69 +316,6 @@ namespace ConnectionProvider.Migrations
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.InsertData(
-                table: "cities",
-                columns: new[] { "Id", "CityName" },
-                values: new object[] { 1, "г.Душанбе" });
-
-            migrationBuilder.InsertData(
-                table: "citizenships",
-                columns: new[] { "Id", "CitizenOf" },
-                values: new object[] { 1, "шаҳрванди Ҷумҳурии Тоҷикистон" });
-
-            migrationBuilder.InsertData(
-                table: "departments",
-                columns: new[] { "Id", "DepartmentName" },
-                values: new object[,]
-                {
-                    { 1, "Отдел по работе с партнерами" },
-                    { 2, "Отдел кадров" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "principalNames",
-                columns: new[] { "Id", "PrincipalFullName" },
-                values: new object[] { 1, "Курбонов Абдулло У." });
-
-            migrationBuilder.InsertData(
-                table: "principalPlaces",
-                columns: new[] { "Id", "PrincipalPlaceName" },
-                values: new object[] { 1, "Ҷамъияти саҳомии кушодаи «Алиф Бонк»" });
-
-            migrationBuilder.InsertData(
-                table: "principalPositions",
-                columns: new[] { "Id", "PositionName" },
-                values: new object[] { 1, "Раис" });
-
-            migrationBuilder.InsertData(
-                table: "principalReasons",
-                columns: new[] { "Id", "ReasonType" },
-                values: new object[] { 1, "Оиннома" });
-
-            migrationBuilder.InsertData(
-                table: "purposes",
-                columns: new[] { "Id", "PurposeText" },
-                values: new object[,]
-                {
-                    { 1, "Салом, Оферта, ДБО, Банковский счет, Депозит" },
-                    { 2, "СМИ, залог, поручительство" },
-                    { 3, "Озод намудани амволи гарав" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "receiversPassportTypes",
-                columns: new[] { "Id", "Type" },
-                values: new object[] { 1, "шиносномаи" });
-
-            migrationBuilder.InsertData(
-                table: "roles",
-                columns: new[] { "Id", "RoleName" },
-                values: new object[,]
-                {
-                    { 1, "Admin" },
-                    { 2, "User" }
                 });
 
             migrationBuilder.CreateIndex(

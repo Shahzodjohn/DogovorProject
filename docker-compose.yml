@@ -5,7 +5,7 @@ services:
        context: .
        dockerfile: Dockerfile
     ports:
-      - "7254:7245"
+      - "7254:80"
     container_name: 'dogovor.api'
     networks:
       - dogovor-network

@@ -15,7 +15,6 @@
 
 # Mono auto generated files
 mono_crash.*
-docker-compose.dcproj
 docker-compose.override.yml
 # Build results
 [Dd]ebug/
