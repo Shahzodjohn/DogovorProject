@@ -61,9 +61,9 @@ namespace Service.Services
             {
                 if (dto.Password != dto.RepeatPassword)
                     return response.ToLog("400", "The password doesn't match with repeated one!");
-                //if (!dto.EmailAddress.Contains("@team.alif.tj"))
-                //    return response.ToLog("400", "Error while adding a user, please enter a valid email address!");
-                //else
+                if (!dto.EmailAddress.Contains("@team.alif.tj"))
+                    return response.ToLog("400", "Error while adding a user, please enter a valid email address!");
+                else
                     await _uRepository.InsertUser(dto); return "Success! User is registered!";
             }
             catch (Exception ex)

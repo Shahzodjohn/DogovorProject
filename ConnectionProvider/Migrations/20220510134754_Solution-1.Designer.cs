@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ConnectionProvider.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220510133430_Solution-2")]
-    partial class Solution2
+    [Migration("20220510134754_Solution-1")]
+    partial class Solution1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("citizenships");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CitizenOf = "шаҳрванди Ҷумҳурии Тоҷикистон"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.City", b =>
@@ -55,6 +62,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityName = "г.Душанбе"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.Department", b =>
@@ -72,6 +86,18 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DepartmentName = "Отдел по работе с партнерами"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DepartmentName = "Отдел кадров"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.Document", b =>
@@ -189,6 +215,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("principalNames");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PrincipalFullName = "Курбонов Абдулло У."
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.PrincipalPlace", b =>
@@ -206,6 +239,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("principalPlaces");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PrincipalPlaceName = "Ҷамъияти саҳомии кушодаи «Алиф Бонк»"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.PrincipalPosition", b =>
@@ -223,6 +263,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("principalPositions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PositionName = "Раис"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.PrincipalReason", b =>
@@ -240,6 +287,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("principalReasons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ReasonType = "Оиннома"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.Purpose", b =>
@@ -257,6 +311,23 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("purposes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PurposeText = "Салом, Оферта, ДБО, Банковский счет, Депозит"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PurposeText = "СМИ, залог, поручительство"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PurposeText = "Озод намудани амволи гарав"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.ReceiverInfo", b =>
@@ -312,6 +383,13 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("receiversPassportTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Type = "шиносномаи"
+                        });
                 });
 
             modelBuilder.Entity("Entity.Entities.ResetPassword", b =>
@@ -354,6 +432,18 @@ namespace ConnectionProvider.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoleName = "User"
+                        });
                 });
 
             modelBuilder.Entity("Entity.User", b =>

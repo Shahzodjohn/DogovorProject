@@ -29,20 +29,20 @@ namespace ConnectionProvider
 
         //protected override void OnModelCreating(ModelBuilder builder)
         //{
-        //    //base.OnModelCreating(builder);
-        //    //builder.Entity<Role>().HasData(new Role { Id = 1, RoleName = "Admin" }, new Role { Id = 2, RoleName = "User" });
-        //    //builder.Entity<Department>().HasData(new Department { Id = 1, DepartmentName = "Отдел по работе с партнерами" }, new Department { Id = 2, DepartmentName = "Отдел кадров" });
-        //    //builder.Entity<City>().HasData(new City { Id = 1, CityName = "г.Душанбе" });
-        //    //builder.Entity<PrincipalPlace>().HasData(new PrincipalPlace { Id = 1, PrincipalPlaceName = "Ҷамъияти саҳомии кушодаи «Алиф Бонк»" });
-        //    //builder.Entity<PrincipalPosition>().HasData(new PrincipalPosition { Id = 1, PositionName = "Раис" });
-        //    //builder.Entity<PrincipalName>().HasData(new PrincipalName { Id = 1, PrincipalFullName = "Курбонов Абдулло У." });
-        //    //builder.Entity<PrincipalReason>().HasData(new PrincipalReason { Id = 1, ReasonType = "Оиннома" });
-        //    //builder.Entity<Citizenship>().HasData(new Citizenship { Id = 1, CitizenOf = "шаҳрванди Ҷумҳурии Тоҷикистон" });
-        //    //builder.Entity<ReceiversPassportType>().HasData(new ReceiversPassportType { Id = 1, Type = "шиносномаи" });
-        //    //builder.Entity<Purpose>().HasData(new Purpose { Id = 1, PurposeText = "Салом, Оферта, ДБО, Банковский счет, Депозит" },
-        //    //                                  new Purpose { Id = 2, PurposeText = "СМИ, залог, поручительство" },
-        //    //                                  new Purpose { Id = 3, PurposeText = "Озод намудани амволи гарав" });
-            
+        //    base.OnModelCreating(builder);
+        //    builder.Entity<Role>().HasData(new Role { Id = 1, RoleName = "Admin" }, new Role { Id = 2, RoleName = "User" });
+        //    builder.Entity<Department>().HasData(new Department { Id = 1, DepartmentName = "Отдел по работе с партнерами" }, new Department { Id = 2, DepartmentName = "Отдел кадров" });
+        //    builder.Entity<City>().HasData(new City { Id = 1, CityName = "г.Душанбе" });
+        //    builder.Entity<PrincipalPlace>().HasData(new PrincipalPlace { Id = 1, PrincipalPlaceName = "Ҷамъияти саҳомии кушодаи «Алиф Бонк»" });
+        //    builder.Entity<PrincipalPosition>().HasData(new PrincipalPosition { Id = 1, PositionName = "Раис" });
+        //    builder.Entity<PrincipalName>().HasData(new PrincipalName { Id = 1, PrincipalFullName = "Курбонов Абдулло У." });
+        //    builder.Entity<PrincipalReason>().HasData(new PrincipalReason { Id = 1, ReasonType = "Оиннома" });
+        //    builder.Entity<Citizenship>().HasData(new Citizenship { Id = 1, CitizenOf = "шаҳрванди Ҷумҳурии Тоҷикистон" });
+        //    builder.Entity<ReceiversPassportType>().HasData(new ReceiversPassportType { Id = 1, Type = "шиносномаи" });
+        //    builder.Entity<Purpose>().HasData(new Purpose { Id = 1, PurposeText = "Салом, Оферта, ДБО, Банковский счет, Депозит" },
+        //                                      new Purpose { Id = 2, PurposeText = "СМИ, залог, поручительство" },
+        //                                      new Purpose { Id = 3, PurposeText = "Озод намудани амволи гарав" });
+
         //}
 
         //builder.Entity<PrincipalReason>()

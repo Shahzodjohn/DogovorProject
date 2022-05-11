@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ConnectionProvider.Migrations
 {
-    public partial class Solution2 : Migration
+    public partial class Solution1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -316,6 +316,69 @@ namespace ConnectionProvider.Migrations
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "cities",
+                columns: new[] { "Id", "CityName" },
+                values: new object[] { 1, "г.Душанбе" });
+
+            migrationBuilder.InsertData(
+                table: "citizenships",
+                columns: new[] { "Id", "CitizenOf" },
+                values: new object[] { 1, "шаҳрванди Ҷумҳурии Тоҷикистон" });
+
+            migrationBuilder.InsertData(
+                table: "departments",
+                columns: new[] { "Id", "DepartmentName" },
+                values: new object[,]
+                {
+                    { 1, "Отдел по работе с партнерами" },
+                    { 2, "Отдел кадров" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "principalNames",
+                columns: new[] { "Id", "PrincipalFullName" },
+                values: new object[] { 1, "Курбонов Абдулло У." });
+
+            migrationBuilder.InsertData(
+                table: "principalPlaces",
+                columns: new[] { "Id", "PrincipalPlaceName" },
+                values: new object[] { 1, "Ҷамъияти саҳомии кушодаи «Алиф Бонк»" });
+
+            migrationBuilder.InsertData(
+                table: "principalPositions",
+                columns: new[] { "Id", "PositionName" },
+                values: new object[] { 1, "Раис" });
+
+            migrationBuilder.InsertData(
+                table: "principalReasons",
+                columns: new[] { "Id", "ReasonType" },
+                values: new object[] { 1, "Оиннома" });
+
+            migrationBuilder.InsertData(
+                table: "purposes",
+                columns: new[] { "Id", "PurposeText" },
+                values: new object[,]
+                {
+                    { 1, "Салом, Оферта, ДБО, Банковский счет, Депозит" },
+                    { 2, "СМИ, залог, поручительство" },
+                    { 3, "Озод намудани амволи гарав" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "receiversPassportTypes",
+                columns: new[] { "Id", "Type" },
+                values: new object[] { 1, "шиносномаи" });
+
+            migrationBuilder.InsertData(
+                table: "roles",
+                columns: new[] { "Id", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "Admin" },
+                    { 2, "User" }
                 });
 
             migrationBuilder.CreateIndex(
