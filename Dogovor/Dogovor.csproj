@@ -15,6 +15,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Migrations\20220510134754_Solution-1.cs" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Migrations\20220510134754_Solution-1.Designer.cs" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Migrations\20220511065554_Solution-2.cs" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\Migrations\20220511065554_Solution-2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Properties\PublishProfiles\Migrations\20220510134754_Solution-1.cs" />
+    <Compile Include="Properties\PublishProfiles\Migrations\20220510134754_Solution-1.Designer.cs" />
+    <Compile Include="Properties\PublishProfiles\Migrations\20220511065554_Solution-2.cs" />
+    <Compile Include="Properties\PublishProfiles\Migrations\20220511065554_Solution-2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
