@@ -1,26 +1,18 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["Dogovor/Dogovor.csproj", "Dogovor/"]
-COPY ["Service/Service.csproj", "Service/"]
-COPY ["Repository/Repository.csproj", "Repository/"]
-COPY ["ConnectionProvider/ConnectionProvider.csproj", "ConnectionProvider/"]
-COPY ["Entity/Entity.csproj", "Entity/"]
-RUN dotnet restore "Dogovor/Dogovor.csproj"
+# Copy csproj and restore as distinct layers
 COPY . .
-WORKDIR "/src/Dogovor"
-RUN dotnet build "Dogovor.csproj" -c Release -o /app/build
+WORKDIR /app/Dogovor
 
-FROM build AS publish
-RUN dotnet publish "Dogovor.csproj" -c Release -o /app/publish
+# Copy everything else and build
+#COPY . .
+WORKDIR /app/Dogovor
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Dogovor.dll"]
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app/Dogovor
+
+COPY --from=build-env /app/Dogovor/out .
+ENTRYPOINT ["dotnet", "Dogovor.dll","--urls=0.0.0.0:5145"]
