@@ -4,13 +4,10 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY . .
 WORKDIR /app/Dogovor
-RUN dotnet restore --disable-parallel 
-RUN dotnet build -c Release
-RUN dotnet publish -c Release -o out
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app/Dogovor
+EXPOSE 7254
+EXPOSE 5254
 
-COPY --from=build-env /app/Dogovor/out .
-ENTRYPOINT ["dotnet", "Dogovor.dll"]
+RUN dotnet dev-certs https
+
+CMD ["dotnet", "run", "--launch-profile", "Docker"]

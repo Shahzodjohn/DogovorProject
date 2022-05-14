@@ -1,14 +1,15 @@
-version: '3'
+version: "3"
 services:
   dogovorapi:
     build:
-       context: .
-       dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "7254:7245"
-    container_name: 'dogovor.api'
+      - "7254:7254"
+      - "5254:5254"
+    container_name: "dogovor.api"
     networks:
       - dogovor-network
 networks:
-  dogovor-network: 
+  dogovor-network:
     driver: bridge
