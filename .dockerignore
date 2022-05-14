@@ -1,6 +1,5 @@
 **/.classpath
 **/.dockerignore
-docker-compose.dcproj
 **/.env
 **/.git
 **/.gitignore

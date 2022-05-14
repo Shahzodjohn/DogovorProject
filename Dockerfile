@@ -4,10 +4,8 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY . .
 WORKDIR /app/Dogovor
-
-# Copy everything else and build
-#COPY . .
-WORKDIR /app/Dogovor
+RUN dotnet restore --disable-parallel 
+RUN dotnet build -c Release
 RUN dotnet publish -c Release -o out
 
 # Build runtime image

@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Aspose.Words" Version="22.4.0" />
     <PackageReference Include="Fusonic.Extensions.UnitTests.Adapters.InMemoryDatabase" Version="6.2.0" />
     <PackageReference Include="GemBox.Document" Version="33.0.1483" />
@@ -34,7 +30,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
     <!--<PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1003" />-->
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
