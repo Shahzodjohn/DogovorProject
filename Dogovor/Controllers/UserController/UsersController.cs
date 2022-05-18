@@ -16,10 +16,9 @@ namespace DogovorProject.Controllers
     {
         private readonly IUserService _userService;
 
-        public UsersController(IUserService userService, ILogger<UsersController> logger)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
-            logger.LogInformation("created homeController");
         }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDTO dto)
@@ -60,9 +59,9 @@ namespace DogovorProject.Controllers
             return Ok(message);
         }
         [HttpPost("VarifyUser")]
-        public async Task<ActionResult> VerifyUser(RandomNumberDTO dto)
+        public ActionResult VerifyUser(RandomNumberDTO dto)
         {
-            var UserEmail = await _userService.VerifyUser(dto);
+            var UserEmail = _userService.VerifyUser(dto);
             if (UserEmail == null) { return BadRequest(); };
             return Ok(new Response { Status = "Ok", Message = "Verification success!" });
         }
@@ -71,9 +70,7 @@ namespace DogovorProject.Controllers
         {
             var reset = await _userService.ResetPassword(dto);
             if (reset == null)
-            {
                 return BadRequest(new Response { Status = "Error", Message = "Password was not updated!" });
-            }
             return Ok(new Response { Status = "Success!", Message = "The Password is updated successfully" });
         }
     }

@@ -12,7 +12,6 @@ using Service.Services.FormToFillService;
 using Entity.MailSettings;
 using Service.Services.MailService;
 using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
-using Microsoft.Extensions.FileProviders;
 using Dogovor.Controllers.ApplicationController;
 using Service;
 using Service.Services.City;

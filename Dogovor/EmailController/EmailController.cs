@@ -25,10 +25,9 @@ namespace Dogovor.Controllers
         public async Task SendEmail([FromForm]Maildto mailRequest)
         {
             var path = GetPath();
-            await _mailService.SendEmailAsync(mailRequest, path.Result);
+            await _mailService.SendEmailAsync(mailRequest, path);
         }
-
-        private async Task<string> GetPath()
+        private string GetPath()
         {
             var path = _environment.WebRootPath;
             if (!Directory.Exists(path))

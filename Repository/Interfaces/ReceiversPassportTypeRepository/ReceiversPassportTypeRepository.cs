@@ -1,15 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.Entities;
-using Entity.ResponseMessage;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.ReceiversPassportTypeRepository
+﻿namespace Repository.ReceiversPassportTypeRepository
 {
     public class ReceiversPassportTypeRepository : IReceiversPassportTypeRepository
     {

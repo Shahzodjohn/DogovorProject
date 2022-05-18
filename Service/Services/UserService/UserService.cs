@@ -108,11 +108,11 @@ namespace Service.Services
                 return response.ToLog(null, "400 || Message was not sent!" + ex.InnerException.ToString() );
             }
         }
-        public async Task<string> VerifyUser(RandomNumberDTO dto)
+        public string VerifyUser(RandomNumberDTO dto)
         {
             try
             {
-                var message = await _uRepository.GetUserByEmailAndCode(dto);
+                var message = _uRepository.GetUserByEmailAndCode(dto);
                 if (message == null)
                     return response.ToLog("Error", "Invalid code");
                 return message;

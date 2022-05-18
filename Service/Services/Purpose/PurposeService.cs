@@ -1,11 +1,6 @@
 ﻿using Entity.DataTransfer_s;
 using Entity.ResponseMessage;
 using Repository.Purpose;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Purpose
 {

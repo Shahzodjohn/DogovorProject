@@ -18,7 +18,7 @@ namespace Interface.Interfaces
         public Task<string> JSONToken(User user);
         public Task<User> GetUserById(int Id);
         public Task<ResetPassword> GetUserCodeCompared(string email);
-        public Task<string> GetUserByEmailAndCode(RandomNumberDTO dto);
+        public string GetUserByEmailAndCode(RandomNumberDTO dto);
         public Task<User> ResetPassword(NewPasswordDTO dto);
     }
 }

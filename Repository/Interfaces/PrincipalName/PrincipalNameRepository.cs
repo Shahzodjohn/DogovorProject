@@ -1,14 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.ResponseMessage;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.PrincipalName
+﻿namespace Repository.PrincipalName
 {
     public class PrincipalNameRepository : IPrincipalNameRepository
     {

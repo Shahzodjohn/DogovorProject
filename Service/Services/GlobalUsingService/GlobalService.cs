@@ -1,0 +1,17 @@
+﻿global using Entity.MailSettings;
+global using Entity.DataTransfer_s;
+global using Entity.Entities;
+global using Entity.ResponseMessage;
+global using Repository.PrincipalName;
+global using Repository.ReceiversPassportTypeRepository;
+global using Repository.PrincipalPlaceRepository;
+global using Repository.PrincipalPosition;
+global using Repository.PrincipalReason;
+global using Repository.Purpose;
+global using Microsoft.Extensions.Options;
+global using MimeKit;
+global using Repository;
+global using Interface.Interfaces;
+global using MailKit.Net.Smtp;
+global using MailKit.Security;
+global using Entity.DataTransfer_s.MailRequestDTO;

@@ -2,11 +2,6 @@
 using Entity.Entities;
 using Entity.ResponseMessage;
 using Repository.PrincipalReason;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.PrincipalReasonService
 {

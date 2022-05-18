@@ -64,7 +64,7 @@ namespace Interface.Interfaces
             await _context.SaveChangesAsync();
             return user;
         }
-        public async Task<string> GetUserByEmailAndCode(RandomNumberDTO dto)
+        public string GetUserByEmailAndCode(RandomNumberDTO dto)
         {
             var UserEmail = (from r in _context.resetPasswords
                              join u in _context.users on r.UserId equals u.Id
