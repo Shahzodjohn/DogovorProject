@@ -1,9 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.ResponseMessage;
-using Microsoft.EntityFrameworkCore;
-
-namespace Repository.Purpose
+﻿namespace Repository.Purpose
 {
     public class PurposeRepository : IPurposeRepository
     {

@@ -1,9 +1,4 @@
-﻿using Entity.DataTransfer_s;
-using Entity.Entities;
-using Entity.ResponseMessage;
-using Repository.PrincipalReason;
-
-namespace Service.PrincipalReasonService
+﻿namespace Service.PrincipalReasonService
 {
     public class PrincipalReasonService : IPrincipalReasonService
     {

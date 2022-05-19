@@ -1,10 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.ResponseMessage;
-using Microsoft.EntityFrameworkCore;
-using Entity.Entities;
-
-namespace Repository.PrincipalPosition
+﻿namespace Repository.PrincipalPosition
 {
     public class PrincipalPositionRepository : IPrincipalPositionRepository
     {

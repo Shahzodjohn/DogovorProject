@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services.MailService
 {
-    public interface IMailService
+    public interface IMailServices
     {
         Task SendEmailAsync(Maildto mailRequest, string FilePath);
         Task<string> SendEmailResetAsync(string ToEmail);

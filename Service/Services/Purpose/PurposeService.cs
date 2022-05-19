@@ -1,8 +1,4 @@
-﻿using Entity.DataTransfer_s;
-using Entity.ResponseMessage;
-using Repository.Purpose;
-
-namespace Service.Purpose
+﻿namespace Service.Purpose
 {
     public class PurposeService : IPurposeService
     {

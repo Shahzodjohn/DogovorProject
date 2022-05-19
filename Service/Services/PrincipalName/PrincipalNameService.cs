@@ -1,5 +1,4 @@
-﻿
-namespace Service.PrincipalName
+﻿namespace Service.PrincipalName
 {
     public class PrincipalNameService : IPrincipalNameService
     {

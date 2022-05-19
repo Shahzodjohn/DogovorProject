@@ -20,6 +20,7 @@
     <PackageReference Include="GemBox.Document" Version="33.0.1483" />
     <PackageReference Include="InMemoryDatabase" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.38.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,14 +43,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-	  <None Update="NLog.xsd">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-  </ItemGroup>
-
 </Project>

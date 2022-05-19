@@ -1,14 +1,4 @@
-﻿using Entity.DataTransfer_s;
-using Entity.Entities;
-using Entity.ResponseMessage;
-using Repository.ReceiversPassportTypeRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Service
+﻿namespace Service
 {
     public class ReceiversPassportTypeService : IReceiversPassportTypeService
     {

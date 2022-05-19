@@ -1,15 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s.FormApplication;
-using Entity.Entities;
-using Entity.ResponseMessage;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Repository.Interfaces
+﻿namespace Repository.Interfaces
 {
     public class FormRepository : IFormRepository
     {
@@ -25,17 +14,16 @@ namespace Repository.Interfaces
             FormToFill formApplication;
             try
             {
-                var document = new Document
+                var document = await _context.documents.AddAsync(new Document
                 {
                     DocumentNumber = dto.DocumentNumber,
                     cityId = dto.cityId,
                     DateOfIssue = dto.DateOfIssue,
-                };
-                await _context.documents.AddAsync(document);
+                });
                 await _context.SaveChangesAsync();
                 formApplication = new FormToFill
                 {
-                    documentId = document.Id
+                    documentId = document.Entity.Id
                 };
                 await _context.formsToFill.AddAsync(formApplication);
                 await _context.SaveChangesAsync();
@@ -49,23 +37,21 @@ namespace Repository.Interfaces
 
         public async Task<Response> InsertIntoPrincipalInfo(PrincipalInfoDTO dto)
         {
-            
             var findOrder = await _context.formsToFill.FindAsync(dto.OrderId);
             try
             {
                 if (findOrder == null)
                     return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
-                var principalInfo = new PrincipalInfo
+                var principalInfo = await _context.principalInfos.AddAsync(new PrincipalInfo
                 {
                     PrincipalPlaceId = dto.PrincipalPlaceId,
                     PrincipalPositionId = dto.PrincipalPositionId,
                     PrincipalNameId = dto.PrincipalNameId,
                     PrincipalReasonId = dto.PrincipalReasonId,
                     ReceiversAmount = dto.ReceiversAmount
-                };
-                await _context.principalInfos.AddAsync(principalInfo);
+                });
                 await _context.SaveChangesAsync();
-                findOrder.principalInfoId = principalInfo.Id;
+                findOrder.principalInfoId = principalInfo.Entity.Id;
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -83,7 +69,7 @@ namespace Repository.Interfaces
             {
                 if (findOrder == null)
                     return new Response { Status = "400", Message = $"order => {dto.OrderId} wasn't found!" };
-                var receiverInfo = new ReceiverInfo
+                var receiverInfo = await _context.receiverInfos.AddAsync(new ReceiverInfo
                 {
                     ReceiversFullname = dto.ReceiversFullname,
                     СitizenshipId = dto.СitizenshipId,
@@ -91,10 +77,9 @@ namespace Repository.Interfaces
                     PassportNumber = dto.PassportNumber,
                     PassportPlaceOfIssue = dto.PassportPlaceOfIssue,
                     PassportDateOfIssue = dto.PassportDateOfIssue,
-                };
-                await _context.receiverInfos.AddAsync(receiverInfo);
+                });
                 await _context.SaveChangesAsync();
-                findOrder.receiversInfoId = receiverInfo.Id;
+                findOrder.receiversInfoId = receiverInfo.Entity.Id;
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -138,8 +123,7 @@ namespace Repository.Interfaces
             }
             return new Response { Status = "200", Message = "Success!" };
         }
-
-        public async Task<FormToFill?> OrderInfo(int orderId)
+        public async Task<FormToFill> OrderInfo(int orderId)
         {
             var findOrder = await _context.formsToFill.FindAsync(orderId);
             if (findOrder != null)

@@ -22,9 +22,9 @@ namespace Service.Services
         private readonly IUserRepository _uRepository;
         private readonly IDepartmentRepository _dRepository;
         private readonly IRoleRepository _roleRepository;
-        private readonly IMailService _mailService;
+        private readonly IMailServices _mailService;
 
-        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository, IRoleRepository roleRepository, IMailService mailService)
+        public UserService(IUserRepository userRepository, IDepartmentRepository dRepository, IRoleRepository roleRepository, IMailServices mailService)
         {
             _uRepository = userRepository;
             _dRepository = dRepository;

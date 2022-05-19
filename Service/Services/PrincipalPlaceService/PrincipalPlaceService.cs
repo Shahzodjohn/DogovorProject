@@ -1,15 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.Entities;
-using Entity.ResponseMessage;
-using Repository.PrincipalPlaceRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Service.PrincipalPlaceService
+﻿namespace Service.PrincipalPlaceService
 {
     public class PrincipalPlaceService : IPrincipalPlaceService
     {

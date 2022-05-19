@@ -13,9 +13,9 @@ namespace Dogovor.Controllers
     public class EmailController : ControllerBase
     {
         private readonly IWebHostEnvironment _environment;
-        private readonly IMailService _mailService;
+        private readonly IMailServices _mailService;
 
-        public EmailController(IWebHostEnvironment environment, IMailService mailService)
+        public EmailController(IWebHostEnvironment environment, IMailServices mailService)
         {
             _environment = environment;
             _mailService = mailService;

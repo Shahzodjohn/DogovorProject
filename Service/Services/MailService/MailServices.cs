@@ -1,25 +1,13 @@
-﻿using Entity.DataTransfer_s;
-using Entity.DataTransfer_s.MailRequestDTO;
-using Entity.MailSettings;
-using Entity.ResponseMessage;
-using Interface.Interfaces;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using MimeKit;
-using Repository;
-
-namespace Service.Services.MailService
+﻿namespace Service.Services.MailService
 {
-    public class MailService : IMailService
+    public class MailServices : IMailServices
     {
         private readonly MailSettings _settings;
         private readonly IFormRepository _formRepository;
         private readonly IUserRepository _userRepository;
         private readonly ICodeResetRepository _reset;
 
-        public MailService(IOptions<MailSettings> options, IFormRepository formRepository, IUserRepository userRepository, ICodeResetRepository reset)
+        public MailServices(IOptions<MailSettings> options, IFormRepository formRepository, IUserRepository userRepository, ICodeResetRepository reset)
         {
             _settings = options.Value;
             _formRepository = formRepository;
@@ -77,7 +65,7 @@ namespace Service.Services.MailService
             }
             else
             {
-                var dataInsert = await _reset.Insert(randomNumber.ToString(), compare.Id, date);
+                await _reset.Insert(randomNumber.ToString(), compare.Id, date);
             }
             email.Subject = "Восстановление пароля";
             builder.HtmlBody = "Ваш идентификатор доступа. Никому не сообщайте код, даже сотрудникам организации. Ваш код - " + randomNumber.ToString();

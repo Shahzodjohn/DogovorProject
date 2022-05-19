@@ -1,9 +1,4 @@
-﻿using ConnectionProvider;
-using Entity.DataTransfer_s;
-using Entity.ResponseMessage;
-using Microsoft.EntityFrameworkCore;
-
-namespace Repository.PrincipalReason
+﻿namespace Repository.PrincipalReason
 {
     public class PrincipalReasonRepository : IPrincipalReasonRepository
     {

@@ -1,21 +1,4 @@
-﻿using ConnectionProvider;
-using Entity;
-using Entity.DataTransfer_s;
-using Entity.DataTransfer_s.Authorization;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using MimeKit;
-using Entity.Entities;
-
-namespace Interface.Interfaces
+﻿namespace Interface.Interfaces
 {
     public class UserRepository : IUserRepository
     {

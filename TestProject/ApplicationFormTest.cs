@@ -39,10 +39,10 @@ namespace TestProject
         }
         private async Task<Response> DocumentFirstPage(DocumentDTO dto)
         {
-            Response? message; 
+            Response message; 
             using (var context = new AppDbContext(_context))
             {
-                FormToFill? formApplication = default;
+                FormToFill formApplication = default;
                 try
                 {
                     var document = new Document
@@ -65,11 +65,9 @@ namespace TestProject
                     Assert.Fail("BadRequest!");
                 }
                 message = new Response { Status = "200", Message = $"OrderId => {formApplication.Id}" };
-
             }
             if (message.Status == null)
                 Assert.Fail(message.Message);
-
             if (message == null)
                 Assert.Fail("Entity was not saved!");
             if (message.Status == "200")
@@ -128,9 +126,9 @@ namespace TestProject
                     findOrder.principalInfoId = principalInfo.Id;
                     await context.SaveChangesAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    message = new Response { Status = "400", Message = "BadRequest!" };
+                   return new Response { Status = "400", Message = $"BadRequest! {ex.Message}" };
                 }
 
                 message = new Response { Status = "200", Message = "Success!" };
@@ -159,6 +157,7 @@ namespace TestProject
             }
             return formApplication;
         }
+
         [Fact]
         public async void ReceiverThirdPageTest()
         {
@@ -172,7 +171,7 @@ namespace TestProject
             dto.ReceiversPassportTypeId = 1;
             await ReceiverThirdPage(dto);
         }
-        private async Task<bool> ReceiverThirdPage(ReceiversInfoDTO dto)
+        private async Task<Response> ReceiverThirdPage(ReceiversInfoDTO dto)
         {
             Response message;
             using (var context = new AppDbContext(_context))
@@ -198,14 +197,15 @@ namespace TestProject
                 }
                 catch (Exception)
                 {
-                   message = new Response { Status = "400", Message = "BadRequest!" };
+                  return message = new Response { Status = "400", Message = "BadRequest!" };
                 }
                 message = new Response { Status = "200", Message = "Success!" };
             }
             if (message.Status == null)
                 Assert.Fail(message.Status);
-            return true;
+            return message;
         }
+
         //================================================================//
         public async Task<FormToFill> ReturnReceiversInfo()
         {
@@ -223,6 +223,7 @@ namespace TestProject
             }
             return formApplication;
         }
+
         [Fact]
         public async void PurposePageFourTest()
         {
@@ -231,8 +232,7 @@ namespace TestProject
             dto.PurposeId = 2;
             await PurposePageFour(dto);
         }
-
-        public async Task<bool> PurposePageFour(PurposeDTO dto)
+        public async Task<Response> PurposePageFour(PurposeDTO dto)
         {
             Response message;
             using (var context = new AppDbContext(_context))
@@ -247,13 +247,13 @@ namespace TestProject
                 }
                 catch (Exception)
                 {
-                   message = new Response { Status = "400", Message = "BadRequest!" };
+                   return message = new Response { Status = "400", Message = "BadRequest!" };
                 }
                 message = new Response { Status = "200", Message = "Success!" };
             }
             if (message.Status == null)
                 Assert.Fail(message.Status);
-            return true;
+            return message;
         }
         //============================// //====================================//
     }

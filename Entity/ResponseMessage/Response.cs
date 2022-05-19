@@ -9,24 +9,24 @@ namespace Entity.ResponseMessage
 {
     public class Response
     {
-        public string? Status { get; set; }
-        public string? Message { get; set; }
-        private string? CurrentDirectory { get; set; }
-        private string? FileName { get; set; }
-        private string? FilePath { get; set; }
+        public string Status { get; set; }
+        public string Message { get; set; }
+        private string CurrentDirectory { get; set; }
+        private string FileName { get; set; }
+        private string FilePath { get; set; }
         string message = string.Empty;
-        public string ToLog(string? status, string? message)
+        public string ToLog(string status, string message)
         {
             return Logger(status, message);
         }
-        public string Logger(string? status, string? message)
+        public string Logger(string status, string message)
         {
             FileName = "Log.txt";
             CurrentDirectory = Directory.GetCurrentDirectory();
             FilePath = CurrentDirectory + "/" + FileName;
             return Log(status, message);
         }
-        public string Log(string? status, string? message)
+        public string Log(string status, string message)
         {
             using (System.IO.StreamWriter writer = System.IO.File.AppendText(FilePath))
             {
